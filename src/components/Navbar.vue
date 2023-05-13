@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar density="compact">
+    <v-toolbar density="compact" class="d-none d-md-flex">
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
 
       <v-btn icon>
@@ -37,27 +37,28 @@
           ></v-img>
         </span>
         <v-spacer></v-spacer>
-        <router-link to="/about" class="me-5 text-decoration-none"
-          >Home</router-link
+        <router-link to="/about" class="me-5 nav-link"
+        >Home</router-link
         >
-        <router-link to="/" class="me-5 text-decoration-none">Shop</router-link>
-        <router-link to="/" class="me-5 text-decoration-none">Sale</router-link>
-        <router-link to="/" class="me-5 text-decoration-none"
+        <router-link to="/" class="me-5 nav-link">Shop</router-link>
+        <router-link to="/" class="me-5 nav-link">Sale</router-link>
+        <router-link to="/" class="me-5 nav-link"
           >Features</router-link
         >
-        <router-link to="/" class="me-5 text-decoration-none">Blog</router-link>
-        <router-link to="/" class="me-5 text-decoration-none">About</router-link>
-        <router-link to="/" class="me-5 text-decoration-none"
+        <router-link to="/" class="me-5 nav-link">Blog</router-link>
+        <router-link to="/" class="me-5 nav-link">About</router-link>
+        <router-link to="/" class="me-5 nav-link"
           >Contact</router-link
         >
         <v-spacer></v-spacer>
   
-        <v-btn icon>
+        <v-btn icon large>
           <v-icon>mdi-account-circle-outline</v-icon>
         </v-btn>
   
-        <v-btn icon>
+        <v-btn icon large class="position-relative">
           <v-icon>mdi-shopping-outline</v-icon>
+          <span class="bg-dark pa-1 py-0 fw-bold text-white nav-count">0</span>
         </v-btn>
     </v-toolbar>
     <!-- <v-btn icon elevation="0">
@@ -71,10 +72,29 @@
 
 <style scoped>
 * {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   /* outline: 1px solid red; */
 }
+
+.nav-link{
+  color:rgb(126, 123, 123);
+  text-decoration:none;
+
+}
+.nav-link:hover{
+  text-decoration:underline;
+}
 .text-grey {
-  color: rgb(161, 159, 159);
+  color:rgb(126, 123, 123);
+}
+.bg-dark{
+  background-color: #131313 ;
+}
+.nav-count{
+  border-radius: 50%;
+  font-size: 0.75rem;
+  position:absolute;
+  bottom:50%;
+  left: 56%;
 }
 </style>
