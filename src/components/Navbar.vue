@@ -25,42 +25,48 @@
       <v-spacer></v-spacer>
       <span class="fs-6 text-grey me-5">vick@gmail.com</span>
     </v-toolbar>
-    <v-toolbar color="white" class="elevation-1 pa-2 px-6">
+    <div class="secondary-nav">
 
-        <span>
+      <v-toolbar color="white" class="elevation-1 pa-2 px-6 ">
   
-          <v-img
-            src="@/assets/fashionLogo.png.png"
-            alt="fashion logo"
-            width="120"
-            height="50"
-          ></v-img>
-        </span>
-        <v-spacer></v-spacer>
-        <router-link to="/about" class="me-5 nav-link"
-        >Home</router-link
-        >
-        <router-link to="/" class="me-5 nav-link">Shop</router-link>
-        <router-link to="/" class="me-5 nav-link">Sale</router-link>
-        <router-link to="/" class="me-5 nav-link"
-          >Features</router-link
-        >
-        <router-link to="/" class="me-5 nav-link">Blog</router-link>
-        <router-link to="/" class="me-5 nav-link">About</router-link>
-        <router-link to="/" class="me-5 nav-link"
-          >Contact</router-link
-        >
-        <v-spacer></v-spacer>
-  
-        <v-btn icon large>
-          <v-icon>mdi-account-circle-outline</v-icon>
-        </v-btn>
-  
-        <v-btn icon large class="position-relative">
-          <v-icon>mdi-shopping-outline</v-icon>
-          <span class="bg-dark pa-1 py-0 fw-bold text-white nav-count">0</span>
-        </v-btn>
-    </v-toolbar>
+          <span>
+    
+            <v-img
+              src="@/assets/fashionLogo.png.png"
+              alt="fashion logo"
+              width="120"
+              height="50"
+            ></v-img>
+          </span>
+          <v-spacer></v-spacer>
+          <div class="d-none d-md-flex">
+
+            <router-link to="/about" class="me-5 nav-link"
+            >Home</router-link
+            >
+            <router-link to="/" class="me-5 nav-link">Shop</router-link>
+            <router-link to="/" class="me-5 nav-link">Sale</router-link>
+            <router-link to="/" class="me-5 nav-link"
+              >Features</router-link
+            >
+            <router-link to="/" class="me-5 nav-link">Blog</router-link>
+            <router-link to="/" class="me-5 nav-link">About</router-link>
+            <router-link to="/" class="me-5 nav-link"
+              >Contact</router-link
+            >
+          </div>
+          <v-spacer></v-spacer>
+    
+          <v-btn icon large>
+            <v-icon>mdi-account-circle-outline</v-icon>
+          </v-btn>
+    
+          <v-btn icon large class="position-relative">
+            <v-icon>mdi-shopping-outline</v-icon>
+            <span class="bg-dark pa-1 py-0 fw-bold text-white nav-count">0</span>
+          </v-btn>
+      </v-toolbar>
+    </div>
     <!-- <v-btn icon elevation="0">
       <v-icon>mdi-shopping-outline</v-icon>
     </v-btn> -->
@@ -74,6 +80,12 @@
 * {
   font-family: 'Montserrat', sans-serif;
   /* outline: 1px solid red; */
+}
+
+.secondary-nav{
+  position:sticky !important;
+  top:5rem !important;  
+  z-index: 100 !important;
 }
 
 .nav-link{
