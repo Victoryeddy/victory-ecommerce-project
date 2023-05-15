@@ -29,61 +29,51 @@
       <v-row class="mt-5 d-flex justify-content-center">
         <v-col cols="12" lg="4">
           <div class="d-flex flex-column">
-            <div class="fashion-items-card mb-2 border-dark" style="min-height: 55vh">
+            <v-card class="fashion-items-card mb-2 border-dark" style="min-height: 55vh">
               <v-img
                 src="@/assets/banner-02.jpg" 
               />
               <div class="card-overlay"></div>
-            </div>
+            </v-card>
             <div class="fashion-items-card mb-2 border-dark" style="min-height: 55vh">
+              <v-img
+                src="@/assets/banner-05.jpg" 
+              />
+              <div class="card-overlay"></div>
+            </div>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="4">
+          <div class="d-flex flex-column">
+            <div class="fashion-items-card mb-2 border-dark" style="min-height: 10vh">
               <v-img
                 src="@/assets/banner-03.jpg" 
               />
               <div class="card-overlay"></div>
             </div>
-          </div>
-        </v-col>
-        <v-col cols="12" lg="4">
-          <div class="d-flex flex-column">
-            <v-card style="min-height: 50vh" class="mb-0" hover>
-              <v-img
-                src="@/assets/clark-street-mercantile-P3pI6xzovu0-unsplash.jpg"
-                class="align-end"
-                height="300px"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                
-                cover
-              >
-                <v-card-title class="text-white">Hello world</v-card-title>
-              </v-img>
-  
-             
-            </v-card>
 
-            <v-card style="min-height: 60vh" class="mt-0" hover>
-            <v-img
-              src="@/assets/clark-street-mercantile-P3pI6xzovu0-unsplash.jpg"
-              class="align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="400px"
-              cover
-            >
-              <v-card-title class="text-white">Hello world</v-card-title>
-            </v-img>
-  
-           
-          </v-card>
+            <div class="fashion-items-card mb-2 border-dark" style="min-height: 35vh">
+              <v-img
+                src="@/assets/banner-07.jpg" 
+              />
+              <div class="card-overlay"></div>
+            </div>
           </div>
          
          
         </v-col>
         <v-col cols="12" lg="4">
           <div class="d-flex flex-column">
-            <v-card style="min-height: 55vh" class="mb-2 border-dark">
-              <p class="text-center">hello world</p>
-            </v-card>
-            <v-card style="min-height: 55vh" class="mb-2 border-dark">
-              <p class="text-center">hello world</p>
+            <div class="fashion-items-card mb-2 border-dark" style="min-height: 55vh">
+              <v-img
+                src="@/assets/banner-04.jpg" 
+              />
+              <div class="card-overlay"></div>
+            </div>
+            <v-card style="min-height: 55vh" class=" bg-grey mb-2 border-dark d-flex justify-center align-center flex-column">
+              <h2 class="text-center fs-3 text-uppercase">Sign up & get 20% free.</h2>
+              <p class="text-center mt-2 w-85 mx-auto">Be the first to know about the latest fashion news and get exclusive offers</p>
+              <p><v-btn class="text-uppercase mt-5" rounded color="black" size="large">sign up</v-btn></p>
             </v-card>
           </div>
         </v-col>
@@ -161,8 +151,8 @@ onMounted(() => {
   overflow: hidden;
 }
 .fashion-items-card .v-img {
-  /* width: 100%;
-  height: 100%; */
+  /* width: 100%; */
+  /* min-height: 50vh; */
   transition: transform 0.3s ease;
 }
 .card-overlay {
@@ -181,5 +171,9 @@ onMounted(() => {
 
 .fashion-items-card:hover .card-overlay {
   opacity: 1;
+}
+
+.w-85{
+  width:85%;
 }
 </style>
