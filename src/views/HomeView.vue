@@ -17,7 +17,7 @@
             </p>
             <p class="text-h2 text-white text-uppercase header">New Arrivals</p>
             <p class="text-center mt-8">
-              <v-btn class="fw-bold fs-3" rounded>Shop Now</v-btn>
+              <v-btn class="fw-bold fs-3" size="large" rounded>Shop Now</v-btn>
             </p>
           </div>
         </v-sheet>
@@ -25,55 +25,88 @@
     </v-carousel>
 
     <v-container>
-
       <v-row class="mt-5 d-flex justify-content-center">
         <v-col cols="12" lg="4">
           <div class="d-flex flex-column">
-            <v-card class="fashion-items-card mb-2 border-dark" style="min-height: 55vh">
-              <v-img
-                src="@/assets/banner-02.jpg" 
-              />
+            <v-card
+              class="fashion-items-card mb-2 border-dark"
+              style="min-height: 55vh;"
+            >
+              <v-img src="@/assets/banner-02.jpg" />
               <div class="card-overlay"></div>
+              <div class="position-absolute" style="left:30%; z-index: 333; top:70%">
+                <v-btn color="white" size="large">Dresses</v-btn>
+              </div>
             </v-card>
-            <div class="fashion-items-card mb-2 border-dark" style="min-height: 55vh">
-              <v-img
-                src="@/assets/banner-05.jpg" 
-              />
+            <v-card
+              class="fashion-items-card mt-2 border-dark"
+              style="min-height: 50vh"
+            >
+              <v-img src="@/assets/banner-05.jpg" />
               <div class="card-overlay"></div>
-            </div>
+              <div class="position-absolute" style="left:30%; z-index: 333; top:70%">
+                <v-btn color="white" size="large">Sunglasses</v-btn>
+              </div>
+            </v-card>
           </div>
         </v-col>
         <v-col cols="12" lg="4">
           <div class="d-flex flex-column">
-            <div class="fashion-items-card mb-2 border-dark" style="min-height: 10vh">
-              <v-img
-                src="@/assets/banner-03.jpg" 
-              />
+            <v-card
+              class="fashion-items-card mb-2 border-dark"
+              style="min-height: 10vh"
+            >
+              <v-img src="@/assets/banner-03.jpg" />
               <div class="card-overlay"></div>
-            </div>
+              <div class="position-absolute" style="left:30%; z-index: 333; top:70%">
+                <v-btn color="white" size="large">Watches</v-btn>
+              </div>
+            </v-card>
 
-            <div class="fashion-items-card mb-2 border-dark" style="min-height: 35vh">
-              <v-img
-                src="@/assets/banner-07.jpg" 
-              />
+            <v-card
+              class="fashion-items-card mb-2 border-dark"
+              style="min-height: 35vh"
+            >
+              <v-img src="@/assets/banner-07.jpg" />
               <div class="card-overlay"></div>
-            </div>
+              <div class="position-absolute" style="left:30%; z-index: 333; top:70%">
+                <v-btn color="white" size="large">Footwear</v-btn>
+              </div>
+            </v-card>
           </div>
-         
-         
         </v-col>
         <v-col cols="12" lg="4">
           <div class="d-flex flex-column">
-            <div class="fashion-items-card mb-2 border-dark" style="min-height: 55vh">
-              <v-img
-                src="@/assets/banner-04.jpg" 
-              />
+            <v-card
+              class="fashion-items-card mb-2 border-dark"
+              style="min-height: 55vh"
+            >
+              <v-img src="@/assets/banner-04.jpg" />
               <div class="card-overlay"></div>
-            </div>
-            <v-card style="min-height: 55vh" class=" bg-grey mb-2 border-dark d-flex justify-center align-center flex-column">
-              <h2 class="text-center fs-3 text-uppercase">Sign up & get 20% free.</h2>
-              <p class="text-center mt-2 w-85 mx-auto">Be the first to know about the latest fashion news and get exclusive offers</p>
-              <p><v-btn class="text-uppercase mt-5" rounded color="black" size="large">sign up</v-btn></p>
+              <div class="position-absolute" style="left:40%; z-index: 333; top:70%">
+                <v-btn color="white" size="large">Bags</v-btn>
+              </div>
+            </v-card>
+            <v-card
+              style="min-height: 50vh"
+              class="bg-light-gray mt-2 border-dark d-flex justify-center align-center flex-column"
+            >
+              <h2 class="text-center fs-3 text-uppercase">
+                Sign up & get 20% free.
+              </h2>
+              <p class="text-center mt-2 w-85 mx-auto">
+                Be the first to know about the latest fashion news and get
+                exclusive offers
+              </p>
+              <p>
+                <v-btn
+                  class="text-uppercase mt-5"
+                  rounded
+                  color="black"
+                  size="large"
+                  >sign up</v-btn
+                >
+              </p>
             </v-card>
           </div>
         </v-col>
@@ -136,6 +169,7 @@ onMounted(() => {
 * {
   font-family: "Montserrat", sans-serif;
   /* outline: 1px solid red; */
+  /* border:1px solid blue; */
 }
 .header {
   font-weight: 600;
@@ -161,7 +195,7 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.15);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -172,8 +206,10 @@ onMounted(() => {
 .fashion-items-card:hover .card-overlay {
   opacity: 1;
 }
-
-.w-85{
-  width:85%;
+.bg-light-gray {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+.w-85 {
+  width: 85%;
 }
 </style>
