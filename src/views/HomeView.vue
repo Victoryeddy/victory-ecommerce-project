@@ -24,99 +24,131 @@
       </v-carousel-item>
     </v-carousel>
 
-    <v-container>
-      <v-row class="mt-5 d-flex justify-content-center">
-        <v-col cols="12" lg="4">
-          <div class="d-flex flex-column">
-            <v-card
-              class="fashion-items-card mb-2 border-dark"
-              style="min-height: 55vh;"
-            >
-              <v-img src="@/assets/banner-02.jpg" />
-              <div class="card-overlay"></div>
-              <div class="position-absolute" style="left:30%; z-index: 333; top:70%">
-                <v-btn color="white" size="large">Dresses</v-btn>
-              </div>
-            </v-card>
-            <v-card
-              class="fashion-items-card mt-2 border-dark"
-              style="min-height: 50vh"
-            >
-              <v-img src="@/assets/banner-05.jpg" />
-              <div class="card-overlay"></div>
-              <div class="position-absolute" style="left:30%; z-index: 333; top:70%">
-                <v-btn color="white" size="large">Sunglasses</v-btn>
-              </div>
-            </v-card>
-          </div>
-        </v-col>
-        <v-col cols="12" lg="4">
-          <div class="d-flex flex-column">
-            <v-card
-              class="fashion-items-card mb-2 border-dark"
-              style="min-height: 10vh"
-            >
-              <v-img src="@/assets/banner-03.jpg" />
-              <div class="card-overlay"></div>
-              <div class="position-absolute" style="left:30%; z-index: 333; top:70%">
-                <v-btn color="white" size="large">Watches</v-btn>
-              </div>
-            </v-card>
-
-            <v-card
-              class="fashion-items-card mb-2 border-dark"
-              style="min-height: 35vh"
-            >
-              <v-img src="@/assets/banner-07.jpg" />
-              <div class="card-overlay"></div>
-              <div class="position-absolute" style="left:30%; z-index: 333; top:70%">
-                <v-btn color="white" size="large">Footwear</v-btn>
-              </div>
-            </v-card>
-          </div>
-        </v-col>
-        <v-col cols="12" lg="4">
-          <div class="d-flex flex-column">
-            <v-card
-              class="fashion-items-card mb-2 border-dark"
-              style="min-height: 55vh"
-            >
-              <v-img src="@/assets/banner-04.jpg" />
-              <div class="card-overlay"></div>
-              <div class="position-absolute" style="left:40%; z-index: 333; top:70%">
-                <v-btn color="white" size="large">Bags</v-btn>
-              </div>
-            </v-card>
-            <v-card
-              style="min-height: 50vh"
-              class="bg-light-gray mt-2 border-dark d-flex justify-center align-center flex-column"
-            >
-              <h2 class="text-center fs-3 text-uppercase">
-                Sign up & get 20% free.
-              </h2>
-              <p class="text-center mt-2 w-85 mx-auto">
-                Be the first to know about the latest fashion news and get
-                exclusive offers
-              </p>
-              <p>
-                <v-btn
-                  class="text-uppercase mt-5"
-                  rounded
-                  color="black"
-                  size="large"
-                  >sign up</v-btn
+    <div>
+      <v-container>
+        <v-row class="mt-5 d-flex justify-content-center">
+          <v-col cols="12" lg="4">
+            <div class="d-flex flex-column">
+              <v-card
+                class="fashion-items-card mb-2 border-dark"
+                style="min-height: 55vh"
+              >
+                <v-img src="@/assets/banner-02.jpg" />
+                <div class="card-overlay"></div>
+                <div
+                  class="position-absolute"
+                  style="left: 30%; z-index: 333; top: 70%"
                 >
-              </p>
-            </v-card>
+                  <v-btn color="white" size="large">Dresses</v-btn>
+                </div>
+              </v-card>
+              <v-card
+                class="fashion-items-card mt-2 border-dark"
+                style="min-height: 50vh"
+              >
+                <v-img src="@/assets/banner-05.jpg" />
+                <div class="card-overlay"></div>
+                <div
+                  class="position-absolute"
+                  style="left: 30%; z-index: 333; top: 70%"
+                >
+                  <v-btn color="white" size="large">Sunglasses</v-btn>
+                </div>
+              </v-card>
+            </div>
+          </v-col>
+          <v-col cols="12" lg="4">
+            <div class="d-flex flex-column">
+              <v-card
+                class="fashion-items-card mb-2 border-dark"
+                style="min-height: 10vh"
+              >
+                <v-img src="@/assets/banner-03.jpg" />
+                <div class="card-overlay"></div>
+                <div
+                  class="position-absolute"
+                  style="left: 30%; z-index: 333; top: 70%"
+                >
+                  <v-btn color="white" size="large">Watches</v-btn>
+                </div>
+              </v-card>
+
+              <v-card
+                class="fashion-items-card mb-2 border-dark"
+                style="min-height: 35vh"
+              >
+                <v-img src="@/assets/banner-07.jpg" />
+                <div class="card-overlay"></div>
+                <div
+                  class="position-absolute"
+                  style="left: 30%; z-index: 333; top: 70%"
+                >
+                  <v-btn color="white" size="large">Footwear</v-btn>
+                </div>
+              </v-card>
+            </div>
+          </v-col>
+          <v-col cols="12" lg="4">
+            <div class="d-flex flex-column">
+              <v-card
+                class="fashion-items-card mb-2 border-dark"
+                style="min-height: 55vh"
+              >
+                <v-img src="@/assets/banner-04.jpg" />
+                <div class="card-overlay"></div>
+                <div
+                  class="position-absolute"
+                  style="left: 40%; z-index: 333; top: 70%"
+                >
+                  <v-btn color="white" size="large">Bags</v-btn>
+                </div>
+              </v-card>
+              <v-card
+                style="min-height: 50vh"
+                class="bg-light-gray mt-2 border-dark d-flex justify-center align-center flex-column"
+              >
+                <h2 class="text-center fs-3 text-uppercase">
+                  Sign up & get 20% free.
+                </h2>
+                <p class="text-center mt-2 w-85 mx-auto">
+                  Be the first to know about the latest fashion news and get
+                  exclusive offers
+                </p>
+                <p>
+                  <v-btn
+                    class="text-uppercase mt-5"
+                    rounded
+                    color="black"
+                    size="large"
+                    >sign up</v-btn
+                  >
+                </p>
+              </v-card>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
+
+    <section class="featured-products">
+      <v-container>
+        <h4 class="text-center text-capitalize featuredProductHeader">
+          featured products
+        </h4>
+        <VueAIcarousel :Property="{ ID: 'Unique_id' }">
+          <!-- You can use any number of Content [ID is important] -->
+          <div v-for="product in fetchedProductData" class="real-cards shadow-sm" :key="product.id">
+              <img :src="product.image" width="250" height="250"/>
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
+        </VueAIcarousel>
+      </v-container>
+    </section>
   </div>
 </template>
 
 <script setup>
 import Navbar from "@/components/Navbar.vue";
+import VueAIcarousel from "vue-ai-carousel";
 
 //  using lifecycle hooks
 import { onMounted, ref, reactive } from "vue";
@@ -152,16 +184,23 @@ const carouselData = reactive({
     },
   ],
 });
+
+// featured products section
+const fetchedProductData = ref([]);
+
+const fetchData = async () => {
+  try {
+    const response = await apiClient.get("products?limit=5");
+    const data = await response.data;
+    console.log(data);
+    fetchedProductData.value = data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 onMounted(() => {
-  console.log(`the component is now mounted.`);
-  apiClient
-    .get("products")
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  fetchData();
 });
 </script>
 
@@ -211,5 +250,23 @@ onMounted(() => {
 }
 .w-85 {
   width: 85%;
+}
+
+.featured-products {
+  padding: 5rem 0;
+}
+.featuredProductHeader {
+  font-size: 2.5rem;
+}
+
+.featured-products-cards {
+  background: blue !important;
+}
+.real-cards {
+  background: #fff;
+  box-shadow: 2px 2px 2px  #0000007e;
+  width: 40vw;
+  height:80vh;
+  /* height: 8rem; */
 }
 </style>
