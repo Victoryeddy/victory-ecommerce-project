@@ -135,12 +135,7 @@
         <h4 class="text-center text-capitalize featuredProductHeader">
           featured products
         </h4>
-        <VueAIcarousel :Property="{ ID: 'Unique_id' }">
-          <!-- You can use any number of Content [ID is important] -->
-          <div v-for="product in fetchedProductData" class="real-cards shadow-sm" :key="product.id">
-              <img :src="product.image" width="250" height="250"/>
-          </div>
-        </VueAIcarousel>
+       
       </v-container>
     </section>
   </div>
@@ -148,7 +143,6 @@
 
 <script setup>
 import Navbar from "@/components/Navbar.vue";
-import VueAIcarousel from "vue-ai-carousel";
 
 //  using lifecycle hooks
 import { onMounted, ref, reactive } from "vue";
