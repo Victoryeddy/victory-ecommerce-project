@@ -44,7 +44,7 @@
               </v-card>
               <v-card
                 class="fashion-items-card mt-2 border-dark"
-                style="min-height: 50vh"
+                style="min-height: 40vh"
               >
                 <v-img src="@/assets/banner-05.jpg" />
                 <div class="card-overlay"></div>
@@ -61,7 +61,7 @@
             <div class="d-flex flex-column">
               <v-card
                 class="fashion-items-card mb-2 border-dark"
-                style="min-height: 10vh"
+                style="min-height: 30vh"
               >
                 <v-img src="@/assets/banner-03.jpg" />
                 <div class="card-overlay"></div>
@@ -75,7 +75,7 @@
 
               <v-card
                 class="fashion-items-card mb-2 border-dark"
-                style="min-height: 35vh"
+                style="min-height: 55vh"
               >
                 <v-img src="@/assets/banner-07.jpg" />
                 <div class="card-overlay"></div>
@@ -104,7 +104,7 @@
                 </div>
               </v-card>
               <v-card
-                style="min-height: 50vh"
+                style="min-height: 40vh"
                 class="bg-light-gray mt-2 border-dark d-flex justify-center align-center flex-column"
               >
                 <h2 class="text-center fs-3 text-uppercase">
@@ -132,28 +132,64 @@
 
     <section class="featured-products">
       <v-container>
-        <h4 class="text-center text-capitalize featuredProductHeader">
+        <h4 class="text-center text-capitalize featuredProductHeader mb-6">
           featured products
         </h4>
-       
+
+        <vueper-slides
+          class="no-shadow mt-3"
+          :visible-slides="3"
+          :slide-ratio="1 / 4"
+          :dragging-distance="70"
+          :gap="3"
+          fixed-height="390px"
+           :breakpoints="{ 800: { visibleSlides: 1, slideMultiple: 2 } }"
+        >
+          <vueper-slide v-for="product in fetchedProductData" :key="product.id"  >
+            <template #content>
+              <!-- <div class="position-relative"> 
+                <v-img :src="product.image" width="500" height="300"/>
+                <div class="card-overlay"></div>
+
+                <p class="text-center mt-3 font-weight-bold fs-3">{{ product.title }}</p>
+              </div> -->
+              <v-card
+                class="fashion-items-card mb-2 border-dark d-flex align-items-stretch"
+                
+              >
+               <v-img :src="product.image" width="500" height="300"/>
+                <div class="card-overlay"></div>
+                <div
+                  class="position-absolute"
+                  style="left: 30%; z-index: 333; top: 70%"
+                >
+                  <v-btn color="white" size="large" class="featuredButton">Add to Cart</v-btn>
+                </div>
+                <p>{{ product.title }}</p>
+              </v-card>
+            </template>
+          </vueper-slide>
+        </vueper-slides>
       </v-container>
     </section>
   </div>
 </template>
 
 <script setup>
-import Navbar from "@/components/Navbar.vue";
+import Navbar from "@/components/Navbar.vue"
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
 
 //  using lifecycle hooks
-import { onMounted, ref, reactive } from "vue";
-import apiClient from "@/plugins/axios";
+import { onMounted, ref, reactive } from "vue"
+import apiClient from "@/plugins/axios"
 
-const model = ref(0);
-console.log(model.value);
+const model = ref(0)
+console.log(model.value)
 
 // current date
-const currentYear = new Date().getFullYear();
-console.log(currentYear);
+const currentYear = new Date().getFullYear()
+console.log(currentYear)
 
 // carousel slide pictures
 const carouselData = reactive({
@@ -177,25 +213,25 @@ const carouselData = reactive({
       src: "girl2 fashion.jpg",
     },
   ],
-});
+})
 
 // featured products section
-const fetchedProductData = ref([]);
+const fetchedProductData = ref([])
 
 const fetchData = async () => {
   try {
-    const response = await apiClient.get("products?limit=5");
-    const data = await response.data;
-    console.log(data);
-    fetchedProductData.value = data;
+    const response = await apiClient.get("products?limit=8")
+    const data = await response.data
+    console.log(data)
+    fetchedProductData.value = data
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-};
+}
 
 onMounted(() => {
-  fetchData();
-});
+  fetchData()
+})
 </script>
 
 <style scoped>
@@ -258,9 +294,12 @@ onMounted(() => {
 }
 .real-cards {
   background: #fff;
-  box-shadow: 2px 2px 2px  #0000007e;
+  box-shadow: 2px 2px 2px #0000007e;
   width: 40vw;
-  height:80vh;
+  height: 80vh;
   /* height: 8rem; */
+}
+.featuredButton{
+  transform: translate(-90) !important;
 }
 </style>
