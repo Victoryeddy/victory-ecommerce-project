@@ -131,7 +131,7 @@
     </div>
 
     <section class="featured-products">
-      <v-container>
+      <div>
         <h4 class="text-center text-capitalize featuredProductHeader mb-6">
           featured products
         </h4>
@@ -143,9 +143,9 @@
           :dragging-distance="70"
           :gap="3"
           fixed-height="390px"
-           :breakpoints="{ 800: { visibleSlides: 1, slideMultiple: 2 } }"
+          :breakpoints="{ 800: { visibleSlides: 1, slideMultiple: 2 } }"
         >
-          <vueper-slide v-for="product in fetchedProductData" :key="product.id"  >
+          <vueper-slide v-for="product in fetchedProductData" :key="product.id">
             <template #content>
               <!-- <div class="position-relative"> 
                 <v-img :src="product.image" width="500" height="300"/>
@@ -155,30 +155,88 @@
               </div> -->
               <v-card
                 class="fashion-items-card mb-2 border-dark d-flex align-items-stretch"
-                
               >
-               <v-img :src="product.image" width="500" height="300"/>
+                <v-img :src="product.image" width="500" height="300" />
                 <div class="card-overlay"></div>
                 <div
                   class="position-absolute"
                   style="left: 30%; z-index: 333; top: 70%"
                 >
-                  <v-btn color="white" size="large" class="featuredButton">Add to Cart</v-btn>
+                  <v-btn color="white" size="large" class="featuredButton"
+                    >Add to Cart</v-btn
+                  >
                 </div>
                 <p>{{ product.title }}</p>
               </v-card>
             </template>
           </vueper-slide>
         </vueper-slides>
-      </v-container>
+
+        <v-container class="bg-surface-variant">
+          <v-row no-gutters class="bg-surface-variant">
+            <v-col align-self="start" cols="12" md="4">
+              <v-row class="flex-column">
+                <v-col align-self="start">
+                 <v-sheet class="pa-2 ma-2" style="min-height:60vh;"> .align-self-start </v-sheet>
+
+                </v-col>
+               
+                 <v-col align-self="end">
+                 <v-sheet class="pa-2 ma-2" style="min-height:50vh;"> .align-self-end </v-sheet>
+
+                </v-col>
+              </v-row>
+              
+            </v-col>
+
+
+            <v-col align-self="center" cols="12" md="4">
+              <v-row class="flex-column">
+                <v-col align-self="center">
+                 <v-sheet class="pa-2 ma-2" style="min-height:50vh;"> .align-self-start </v-sheet>
+
+                </v-col>
+                <!-- <v-col align-self="center">
+                 <v-sheet class="pa-2 ma-2"> .align-self-center </v-sheet>
+
+                </v-col> -->
+                 <v-col align-self="end">
+                 <v-sheet class="pa-2 ma-2" style="min-height:60vh;"> .align-self-end </v-sheet>
+
+                </v-col>
+              </v-row>
+              
+            </v-col>
+
+
+             <v-col align-self="center" cols="12" md="4">
+              <v-row class="flex-column">
+                <v-col align-self="center">
+                 <v-sheet class="pa-2 ma-2" style="min-height:60vh;"> .align-self-start </v-sheet>
+
+                </v-col>
+                
+                 <v-col align-self="end">
+                 <v-sheet class="pa-2 ma-2" style="min-height:50vh;"> .align-self-end </v-sheet>
+
+                </v-col>
+              </v-row>
+              
+            </v-col>
+
+           
+          </v-row>
+
+        </v-container>
+      </div>
     </section>
   </div>
 </template>
 
 <script setup>
 import Navbar from "@/components/Navbar.vue"
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
+import { VueperSlides, VueperSlide } from "vueperslides"
+import "vueperslides/dist/vueperslides.css"
 
 //  using lifecycle hooks
 import { onMounted, ref, reactive } from "vue"
@@ -299,7 +357,7 @@ onMounted(() => {
   height: 80vh;
   /* height: 8rem; */
 }
-.featuredButton{
+.featuredButton {
   transform: translate(-90) !important;
 }
 </style>
