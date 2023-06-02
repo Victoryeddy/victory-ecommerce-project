@@ -13,7 +13,7 @@
 import { ref } from "vue"
 import { GoogleMap, Marker } from "vue3-google-map"
 // process.env.VUE_APP_GOOGLE_MAP_KEY
-const apiKey = ref("AIzaSyCHCtFyLQ1FEYV9QYJtAChRlzR7uv2UQ_g")
+const apiKey = ref("")
 const center = ref({ lat: 40.689247, lng: -74.044502 })
 const zoom = ref(12)
 const markerOptions = ref({
