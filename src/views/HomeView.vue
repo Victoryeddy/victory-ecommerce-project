@@ -15,9 +15,13 @@
             <p class="text-h6 text-white text-center fw-bold">
               All collections {{ currentYear }}
             </p>
-            <p class="text-h2 text-white text-uppercase header">New Arrivals</p>
+            <p class="text-h2 text-white text-uppercase header text-center">
+              New Arrivals
+            </p>
             <p class="text-center mt-8">
-              <v-btn class="fw-bold fs-3" size="large" rounded>Shop Now</v-btn>
+              <v-btn class="fw-bold fs-3" size="large" color="primary" rounded
+                >Shop Now</v-btn
+              >
             </p>
           </div>
         </v-sheet>
@@ -47,11 +51,10 @@
                   </v-img>
 
                   <div class="card-overlay"></div>
-                  <div
-                    class="position-absolute"
-                    style="left: 30%; z-index: 333; top: 70%"
-                  >
-                    <v-btn color="white" size="large">Dresses</v-btn>
+                  <div class="position-absolute category-cards">
+                    <v-btn color="primary" rounded size="x-large"
+                      >Dresses</v-btn
+                    >
                   </div>
                 </v-card>
               </v-sheet>
@@ -75,11 +78,10 @@
                     </template>
                   </v-img>
                   <div class="card-overlay"></div>
-                  <div
-                    class="position-absolute"
-                    style="left: 30%; z-index: 333; top: 70%"
-                  >
-                    <v-btn color="white" size="large">Sunglasses</v-btn>
+                  <div class="position-absolute category-cards">
+                    <v-btn color="primary" rounded size="x-large"
+                      >Sunglasses</v-btn
+                    >
                   </div>
                 </v-card>
               </v-sheet>
@@ -107,11 +109,10 @@
                     </template>
                   </v-img>
                   <div class="card-overlay"></div>
-                  <div
-                    class="position-absolute"
-                    style="left: 30%; z-index: 333; top: 70%"
-                  >
-                    <v-btn color="white" size="large">Watches</v-btn>
+                  <div class="position-absolute category-cards">
+                    <v-btn color="primary" rounded size="x-large"
+                      >Watches</v-btn
+                    >
                   </div>
                 </v-card>
               </v-sheet>
@@ -135,11 +136,10 @@
                     </template>
                   </v-img>
                   <div class="card-overlay"></div>
-                  <div
-                    class="position-absolute"
-                    style="left: 30%; z-index: 333; top: 70%"
-                  >
-                    <v-btn color="white" size="large">Footwear</v-btn>
+                  <div class="position-absolute category-cards">
+                    <v-btn color="primary" rounded size="x-large"
+                      >Footwear</v-btn
+                    >
                   </div>
                 </v-card>
               </v-sheet>
@@ -167,11 +167,8 @@
                     </template>
                   </v-img>
                   <div class="card-overlay"></div>
-                  <div
-                    class="position-absolute"
-                    style="left: 40%; z-index: 333; top: 70%"
-                  >
-                    <v-btn color="white" size="large">Bags</v-btn>
+                  <div class="position-absolute category-cards">
+                    <v-btn color="primary" rounded size="x-large">Bags</v-btn>
                   </div>
                 </v-card>
               </v-sheet>
@@ -193,7 +190,7 @@
                     <v-btn
                       class="text-uppercase mt-5"
                       rounded
-                      color="black"
+                      color="primary"
                       size="large"
                       >sign up</v-btn
                     >
@@ -219,17 +216,10 @@
           :dragging-distance="70"
           :gap="3"
           fixed-height="500px"
-          :breakpoints="{ 800: { visibleSlides: 1, slideMultiple: 2 } }"
+          :breakpoints="{ 598: { visibleSlides: 1, slideMultiple: 2 } }"
         >
-          <!-- <template #arrow-left>
-            <v-icon size="x-large">mdi-arrow-left-bold-circle</v-icon>
-          </template>
-          <template #arrow-right>
-            <v-icon size="x-large">mdi-arrow-right-bold-circle</v-icon>
-          </template> -->
           <vueper-slide v-for="product in fetchedProductData" :key="product.id">
             <template #content>
-              <!-- class="fashion-items-card mb-2 border-dark d-flex align-items-stretch" -->
               <v-card class="d-flex align-items-stretch flex-column pa-2">
                 <v-img
                   :src="product.image"
@@ -292,10 +282,7 @@
                 </template>
               </v-img>
               <div class="card-overlay"></div>
-              <div
-                class="position-absolute"
-                style="left: 30%; z-index: 333; top: 40%"
-              >
+              <div class="position-absolute beauty-collection">
                 <p
                   class="text-capitalize text-white font-weight-bold text-h4 text-center"
                 >
@@ -313,11 +300,8 @@
 
           <v-col cols="12" lg="6">
             <v-card class="mt-2">
-              <v-img src="@/assets/shop-item-09-glasses.jpeg" />
-              <div
-                class="position-absolute"
-                style="left: 25%; z-index: 333; top: 55%"
-              >
+              <v-img src="@/assets/shop-item-09-glasses.jpeg" class="glasses" />
+              <div class="position-absolute timer-section">
                 <p class="text-capitalize text-center">Gafas sol Hawkers one</p>
                 <p class="text-center mt-2">
                   <span style="text-decoration: line-through" class="me-2"
@@ -455,8 +439,8 @@
           </v-col>
         </v-row>
 
-        <v-row class="pt-10">
-          <v-col cols="12"  md="9" lg="4" class="border-end">
+        <v-row class="pt-10" justify="center">
+          <v-col cols="12" sm="6" lg="4" class="border-end">
             <p class="text-center">Free Delivery Worldwide</p>
             <p class="font-xs text-center">
               <router-link to="#" class="text-decoration-none"
@@ -464,13 +448,13 @@
               >
             </p>
           </v-col>
-          <v-col cols="12" md="9" lg="4" class="border-end">
-            <p class="text-center ">30 Days Return</p>
+          <v-col cols="12" sm="6" lg="4" class="border-end">
+            <p class="text-center">30 Days Return</p>
             <p class="font-xs text-center font-weight-light">
               Simply return it within 30 days for an exchange
             </p>
           </v-col>
-          <v-col cols="12" md="9" lg="4">
+          <v-col cols="12" sm="6" lg="4">
             <p class="text-center">Store Opening</p>
             <p class="font-xs text-center font-weight-light">
               Shop open from Monday to Sunday
@@ -483,7 +467,7 @@
     <footer class="footer bg-dark-grey">
       <v-container>
         <v-row>
-          <v-col cols="12" md="3" lg="4">
+          <v-col cols="12" sm="6" md="6" lg="4">
             <p class="font-weight-bold">GET IN TOUCH</p>
             <p class="font-weight-light mt-3">
               Any questions? Let us know in store at 8th floor, 379 Hudson St,
@@ -502,81 +486,81 @@
             </p>
           </v-col>
 
-          <v-col cols="12" md="6" lg="2">
+          <v-col cols="12" sm="6" md="6" lg="2">
             <p class="font-weight-bold">CATEGORIES</p>
 
             <ul style="list-style-type: none" class="mt-3">
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey">Men</a>
+                <a href="#" class="text-decoration-none font-weight-light text-black">Men</a>
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Women</a
                 >
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Dresses</a
                 >
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Sunglasses</a
                 >
               </li>
             </ul>
           </v-col>
-          <v-col cols="12" md="6" lg="2">
+          <v-col cols="12" sm="6" md="6" lg="2">
             <p class="font-weight-bold">LINKS</p>
 
             <ul style="list-style-type: none" class="mt-3">
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Search</a
                 >
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >About Us</a
                 >
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Contact Us</a
                 >
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Returns</a
                 >
               </li>
             </ul>
           </v-col>
-          <v-col cols="12" md="6" lg="2">
+          <v-col cols="12" sm="6" md="6" lg="2">
             <p class="font-weight-bold">HELP</p>
 
             <ul style="list-style-type: none" class="mt-3">
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Track Order</a
                 >
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Returns</a
                 >
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey"
+                <a href="#" class="text-decoration-none font-weight-light text-black"
                   >Shipping</a
                 >
               </li>
               <li class="my-2">
-                <a href="#" class="text-decoration-none text-dark-grey">FAQS</a>
+                <a href="#" class="text-decoration-none font-weight-light text-black">FAQS</a>
               </li>
             </ul>
           </v-col>
-          <v-col cols="12" md="6" lg="2">
+          <v-col cols="12" sm="12" md="6" lg="2">
             <p class="font-weight-bold">NEWSLETTER</p>
             <v-row>
               <v-col cols="12">
@@ -587,9 +571,22 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-btn rounded color="black" size="large">subscribe</v-btn>
+                <v-btn rounded color="primary" size="large">subscribe</v-btn>
               </v-col>
             </v-row>
+          </v-col>
+        </v-row>
+
+        <v-row justify="center" align-content="center" class="mt-8">
+          <v-col cols="12" sm="6" class="d-flex">
+            <v-img src="@/assets/paypal.png" width="60" height="25" />
+            <v-img src="@/assets/visa.png" width="60" height="25" />
+            <v-img src="@/assets/mastercard.png" width="60" height="25" />
+            <v-img src="@/assets/express.png" width="60" height="25" />
+            <v-img src="@/assets/discover.png" width="60" height="25" />
+          </v-col>
+          <v-col cols="12">
+           <p class="text-center fs-6 font-weight-light">Copyright &copy;{{ currentYear }} Victory Ndu. All rights reserved.</p>
           </v-col>
         </v-row>
       </v-container>
@@ -709,8 +706,6 @@ onMounted(() => {
   overflow: hidden;
 }
 .fashion-items-card .v-img {
-  /* width: 100%; */
-  /* min-height: 50vh; */
   transition: transform 0.3s ease;
 }
 .card-overlay {
@@ -784,7 +779,80 @@ onMounted(() => {
   color: #131313b3;
 }
 
-.border-end{
+.border-end {
   border-right: 1px solid rgba(128, 128, 128, 0.301);
+}
+
+@media only screen and (max-width: 768px) {
+  .inner-content {
+    background: transparent;
+    position: absolute;
+    left: 1%;
+    top: 30%;
+  }
+  .beauty-collection {
+    left: 20%;
+    z-index: 333;
+    top: 35%;
+  }
+
+  .timer-section {
+    left: 10%;
+    z-index: 333;
+    top: 45%;
+  }
+  .glasses {
+    margin-bottom: 8rem;
+  }
+  .category-cards {
+    left: 27%;
+    z-index: 333;
+    top: 60%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 850px) {
+  .inner-content {
+    background: transparent;
+    position: absolute;
+    left: 24%;
+    top: 30%;
+  }
+  .category-cards {
+    left: 40%;
+    z-index: 333;
+    top: 60%;
+  }
+  .beauty-collection {
+    left: 33%;
+    z-index: 333;
+    top: 35%;
+  }
+
+  .timer-section {
+    left: 30%;
+    z-index: 333;
+    top: 45%;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .category-cards {
+    left: 30%;
+    z-index: 333;
+    top: 60%;
+  }
+
+  .beauty-collection {
+    left: 33%;
+    z-index: 333;
+    top: 35%;
+  }
+
+  .timer-section {
+    left: 30%;
+    z-index: 333;
+    top: 55%;
+  }
 }
 </style>

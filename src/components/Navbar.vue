@@ -82,11 +82,11 @@
   /* outline: 1px solid red; */
 }
 
-.secondary-nav{
-  position:sticky !important;
-  top:5rem !important;  
-  z-index: 100 !important;
-}
+/* .secondary-nav{
+  position:sticky;
+  top:0;  
+  z-index: 100;
+} */
 
 .nav-link{
   color:rgb(126, 123, 123);
