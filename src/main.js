@@ -13,4 +13,5 @@ createApp(App)
   .use(router)
   .use(store)
   .use(vuetify)
+
   .mount('#app')

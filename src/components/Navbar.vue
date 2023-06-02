@@ -41,7 +41,7 @@
           <v-spacer></v-spacer>
           <div class="d-none d-md-flex">
 
-            <router-link to="/about" class="me-5 nav-link"
+            <router-link to="/" class="me-5 nav-link"
             >Home</router-link
             >
             <router-link to="/" class="me-5 nav-link">Shop</router-link>
@@ -51,7 +51,7 @@
             >
             <router-link to="/" class="me-5 nav-link">Blog</router-link>
             <router-link to="/" class="me-5 nav-link">About</router-link>
-            <router-link to="/" class="me-5 nav-link"
+            <router-link to="/contact-us" class="me-5 nav-link"
               >Contact</router-link
             >
           </div>
