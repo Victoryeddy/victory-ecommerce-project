@@ -49,7 +49,7 @@
             <router-link to="/" class="me-5 nav-link"
               >Features</router-link
             >
-            <router-link to="/" class="me-5 nav-link">Blog</router-link>
+            <router-link to="/blog" class="me-5 nav-link">Blog</router-link>
             <router-link to="/about-us" class="me-5 nav-link">About</router-link>
             <router-link to="/contact-us" class="me-5 nav-link"
               >Contact</router-link

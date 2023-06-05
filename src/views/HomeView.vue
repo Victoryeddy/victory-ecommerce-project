@@ -477,7 +477,7 @@ import "vueperslides/dist/vueperslides.css"
 
 //  using lifecycle hooks
 import { onMounted, ref, reactive } from "vue"
-import apiClient from "@/plugins/axios"
+import apiClient from "@/plugins/fakeStoreAxios"
 
 // current date
 const currentYear = new Date().getFullYear()
