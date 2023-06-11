@@ -33,32 +33,34 @@
               <v-container>
                 <v-row>
                   <v-col cols="12">
-                    <v-text-field
-                      
-                      label="Full Name"
-                      required
-                      
-                    ></v-text-field>
+                    <v-text-field label="Full Name" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field label="Phone Number" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field label="Email Address" required></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      label="Phone Number"
+                      label="input an number"
                       required
-                      
+                      type="text"
+                      v-model="numberInput"
+                      @input="formatNumber"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field
-                      label="Email Address"
-                      required
-                      
-                    ></v-text-field>
+                    <v-textarea label="Enter your message"></v-textarea>
                   </v-col>
                   <v-col cols="12">
-                   <v-textarea label="Enter your message"></v-textarea>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-btn color="primary" rounded size="large" append-icon="mdi-send">send</v-btn>
+                    <v-btn
+                      color="primary"
+                      rounded
+                      size="large"
+                      append-icon="mdi-send"
+                      >send</v-btn
+                    >
                   </v-col>
                 </v-row>
               </v-container>
@@ -67,7 +69,7 @@
         </v-row>
       </v-container>
     </main>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -75,6 +77,22 @@
 import GoogleMap from "@/components/GoogleMap.vue"
 import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
+
+import {  ref,  } from "vue"
+
+
+const numberInput = ref('')
+
+function formatNumber() {
+  // Remove any non-digit characters from the input value
+  const digitsOnly = numberInput.value.replace(/\D/g, "")
+
+  // Format the number with commas
+  const formattedNumber = new Intl.NumberFormat().format(digitsOnly)
+
+  // Update the input value with the formatted number
+  numberInput.value = formattedNumber
+}
 </script>
 
 <style>
