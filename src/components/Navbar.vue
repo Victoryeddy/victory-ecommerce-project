@@ -44,7 +44,7 @@
             <router-link to="/" class="me-5 nav-link"
             >Home</router-link
             >
-            <router-link to="/" class="me-5 nav-link">Shop</router-link>
+            <router-link to="/products" class="me-5 nav-link">Shop</router-link>
             <!-- <router-link to="/" class="me-5 nav-link">Sale</router-link>
             <router-link to="/" class="me-5 nav-link"
               >Features</router-link

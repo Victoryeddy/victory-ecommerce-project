@@ -95,7 +95,7 @@ function formatNumber() {
 }
 </script>
 
-<style>
+<style scoped>
 * {
   font-family: "Montserrat", sans-serif;
   /* outline: 1px solid red; */

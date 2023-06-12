@@ -89,7 +89,7 @@ import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 </script>
 
-<style>
+<style scoped>
 * {
   font-family: "Montserrat", sans-serif;
   /* outline: 1px solid red; */
