@@ -66,13 +66,16 @@
           </v-col>
           <v-col cols="12" lg="9">
             <v-row>
-              <v-col cols="12" lg="4">
+              <v-col cols="6" md="6" lg="4" v-for="product in fetchedProductData" :key="product.id">
                 <div>
                   <v-card class="border-dark fashion-items-card">
                     <v-img
-                      src="@/assets/banner-08-countdown.jpeg"
+                      :src="product.image"
                       gradient="to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
-                      cover
+                      width="400"
+                      height="200"
+                      aspect-ratio="16/9"
+                      class="d-flex child-flex"
                     >
                       <template v-slot:placeholder>
                         <v-row
@@ -98,97 +101,13 @@
                     <div class="card-overlay"></div>
                   </v-card>
                   <p class="font-weight-medium mt-4">
-                    Lorem ipsum dolor sit amet.
+                    {{product.title}}
                   </p>
-                  <p class="font-xs mt-1">By Nancy Ward</p>
-                  <!-- <p class="font-xs mt-2">
-                  {{ article.content }}
-                </p>
-                <a :href="article.url" class="fs-3">Read More</a> -->
+                  <p class="font-xs mt-1">{{product.price}}</p>
+                 
                 </div>
               </v-col>
-              <v-col cols="12" lg="4">
-                 <div>
-                  <v-card class="border-dark fashion-items-card">
-                    <v-img
-                      src="@/assets/banner-08-countdown.jpeg"
-                      gradient="to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
-                      cover
-                    >
-                      <template v-slot:placeholder>
-                        <v-row
-                          class="fill-height ma-0"
-                          align="center"
-                          justify="center"
-                        >
-                          <v-progress-circular
-                            indeterminate
-                            color="grey-lighten-5"
-                          ></v-progress-circular>
-                        </v-row>
-                      </template>
-                    </v-img>
-                    <v-icon class="position-absolute heart-button" color="white">mdi-heart-outline</v-icon>
-                    <v-btn
-                      class="position-absolute add-to-cart" 
-                      rounded
-                      color="black"
-                      >Add to Cart</v-btn
-                    >
-
-                    <div class="card-overlay"></div>
-                  </v-card>
-                  <p class="font-weight-medium mt-4">
-                    Lorem ipsum dolor sit amet.
-                  </p>
-                  <p class="font-xs mt-1">By Nancy Ward</p>
-                  <!-- <p class="font-xs mt-2">
-                  {{ article.content }}
-                </p>
-                <a :href="article.url" class="fs-3">Read More</a> -->
-                </div>
-              </v-col>
-              <v-col cols="12" lg="4">
-                <div>
-                  <v-card class="border-dark fashion-items-card">
-                    <v-img
-                      src="@/assets/banner-08-countdown.jpeg"
-                      gradient="to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
-                      cover
-                    >
-                      <template v-slot:placeholder>
-                        <v-row
-                          class="fill-height ma-0"
-                          align="center"
-                          justify="center"
-                        >
-                          <v-progress-circular
-                            indeterminate
-                            color="grey-lighten-5"
-                          ></v-progress-circular>
-                        </v-row>
-                      </template>
-                    </v-img>
-                    <v-icon class="position-absolute heart-button" color="white">mdi-heart-outline</v-icon>
-                    <v-btn
-                      class="position-absolute add-to-cart" 
-                      rounded
-                      color="black"
-                      >Add to Cart</v-btn
-                    >
-
-                    <div class="card-overlay"></div>
-                  </v-card>
-                  <p class="font-weight-medium mt-4">
-                    Lorem ipsum dolor sit amet.
-                  </p>
-                  <p class="font-xs mt-1">By Nancy Ward</p>
-                  <!-- <p class="font-xs mt-2">
-                  {{ article.content }}
-                </p>
-                <a :href="article.url" class="fs-3">Read More</a> -->
-                </div>
-              </v-col>
+             
             </v-row>
           </v-col>
         </v-row>
@@ -202,17 +121,36 @@
 import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
+import apiClient from "@/plugins/fakeStoreAxios"
+
 
 const priceRange = ref(0)
 const minPrice = ref(0)
 const maxPrice = ref(100)
+
+// featured products section
+const fetchedProductData = ref([])
+
+const fetchData = async () => {
+  try {
+    const response = await apiClient.get("products")
+    const data = await response.data
+    console.log(data)
+    fetchedProductData.value = data
+  } catch (error) {
+    console.error(error)
+  }
+}
+onMounted(() => {
+  fetchData()
+})
 </script>
 
 <style scoped>
 * {
   font-family: "Montserrat", sans-serif;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 .shop-header {
   position: absolute;
@@ -283,7 +221,7 @@ const maxPrice = ref(100)
     position: absolute;
     z-index: 666;
     bottom: 38%;
-    left: 30%;
+    left: 20%;
     color: #fff;
     font-size: 2.5rem;
   }
