@@ -29,30 +29,26 @@
             <p class="blog-category-heading font-weight-bold">Category</p>
             <v-list>
               <v-list-item class="border-top"
-                ><v-btn variant="plain" @click="getFilteredData('general')">
-                  All
-                </v-btn></v-list-item
-              >
-              <v-list-item class="border-top"
-                ><v-btn variant="plain" @click="getFilteredData('business')">
+                ><v-btn variant="plain" @click="getFilteredData(`men's clothing`)">
                   Men
                 </v-btn></v-list-item
               >
               <v-list-item class="border-top"
-                ><v-btn variant="plain" @click="getFilteredData('sports')">
+                ><v-btn variant="plain" @click="getFilteredData(`women's clothing`)">
                   Women
                 </v-btn></v-list-item
               >
               <v-list-item class="border-top"
-                ><v-btn variant="plain" @click="getFilteredData('science')">
+                ><v-btn variant="plain" @click="getFilteredData('jewelery')">
                   Jewelry
                 </v-btn></v-list-item
               >
-              <v-list-item class="border-bottom border-top"
-                ><v-btn variant="plain" @click="getFilteredData('health')">
+              <v-list-item class="border-top"
+                ><v-btn variant="plain" @click="getFilteredData('electronics')">
                   Electronics
                 </v-btn></v-list-item
               >
+             
             </v-list>
 
             <p class="blog-category-heading font-weight-bold mt-8">Filters</p>
@@ -103,7 +99,7 @@
                   <p class="font-weight-medium mt-4">
                     {{product.title}}
                   </p>
-                  <p class="font-xs mt-1">{{product.price}}</p>
+                  <p class="font-xs mt-1">{{getFormattedAmount(product.price)}}</p>
                  
                 </div>
               </v-col>
@@ -120,6 +116,7 @@
 <script setup>
 import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
+import { getFormattedAmount } from "@/utilities"
 
 import { ref, onMounted } from "vue"
 import apiClient from "@/plugins/fakeStoreAxios"
@@ -135,13 +132,22 @@ const fetchedProductData = ref([])
 const fetchData = async () => {
   try {
     const response = await apiClient.get("products")
-    const data = await response.data
-    console.log(data)
-    fetchedProductData.value = data
+    const allData = await response.data
+    console.log(allData)
+    fetchedProductData.value = allData
+    
   } catch (error) {
     console.error(error)
   }
 }
+
+ async function getFilteredData(value){
+   const response = await apiClient.get("products")
+    const filteredData = response.data.filter(eachData => eachData.category === value);
+  fetchedProductData.value = filteredData;
+  console.log(fetchedProductData.value, 39247843);
+}
+
 onMounted(() => {
   fetchData()
 })
