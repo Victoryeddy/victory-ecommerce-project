@@ -41,7 +41,7 @@
                   <v-col cols="12">
                     <v-text-field label="Email Address" required></v-text-field>
                   </v-col>
-                  <v-col cols="12">
+                  <!-- <v-col cols="12">
                     <v-text-field
                       label="input an number"
                       required
@@ -49,7 +49,7 @@
                       v-model="numberInput"
                       @input="formatNumber"
                     ></v-text-field>
-                  </v-col>
+                  </v-col> -->
                   <v-col cols="12">
                     <v-textarea label="Enter your message"></v-textarea>
                   </v-col>
@@ -78,21 +78,21 @@ import GoogleMap from "@/components/GoogleMap.vue"
 import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 
-import { ref } from "vue"
+// import { ref } from "vue"
 
 
-const numberInput = ref('')
+// const numberInput = ref('')
 
-function formatNumber() {
-  // Remove any non-digit characters from the input value
-  const digitsOnly = numberInput.value.replace(/\D/g, "")
+// function formatNumber() {
+//   // Remove any non-digit characters from the input value
+//   const digitsOnly = numberInput.value.replace(/\D/g, "")
 
-  // Format the number with commas
-  const formattedNumber = new Intl.NumberFormat().format(digitsOnly)
+//   // Format the number with commas
+//   const formattedNumber = new Intl.NumberFormat().format(digitsOnly)
 
-  // Update the input value with the formatted number
-  numberInput.value = formattedNumber
-}
+//   // Update the input value with the formatted number
+//   numberInput.value = formattedNumber
+// }
 </script>
 
 <style scoped>

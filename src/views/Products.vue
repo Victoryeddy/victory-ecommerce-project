@@ -62,7 +62,7 @@
           </v-col>
           <v-col cols="12" lg="9">
             <v-row>
-              <v-col cols="6" md="6" lg="4" v-for="product in fetchedProductData" :key="product.id">
+              <v-col cols="6" md="6" lg="4" v-for="product in products" :key="product.id">
                 <div>
                   <v-card class="border-dark fashion-items-card">
                     <v-img
@@ -118,7 +118,8 @@ import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 import { getFormattedAmount } from "@/utilities"
 
-import { ref, onMounted } from "vue"
+import { ref, onMounted, computed } from "vue"
+import { useStore } from 'vuex';
 import apiClient from "@/plugins/fakeStoreAxios"
 
 
@@ -127,29 +128,32 @@ const minPrice = ref(0)
 const maxPrice = ref(100)
 
 // featured products section
-const fetchedProductData = ref([])
+const store = useStore();
 
-const fetchData = async () => {
-  try {
-    const response = await apiClient.get("products")
-    const allData = await response.data
-    console.log(allData)
-    fetchedProductData.value = allData
+// const fetchData = async () => {
+//   try {
+//     const response = await apiClient.get("products")
+//     const allData = await response.data
+//     console.log(allData)
+//     fetchedProductData.value = allData
     
-  } catch (error) {
-    console.error(error)
-  }
-}
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
+
+// Get products and cart from the store
+let products = computed(() => store.state.products);
+// const cart = computed(() => store.state.cart);
 
  async function getFilteredData(value){
    const response = await apiClient.get("products")
     const filteredData = response.data.filter(eachData => eachData.category === value);
-  fetchedProductData.value = filteredData;
-  console.log(fetchedProductData.value, 39247843);
+    store.commit('setProducts', filteredData);
 }
 
 onMounted(() => {
-  fetchData()
+  store.dispatch('fetchProducts')
 })
 </script>
 
