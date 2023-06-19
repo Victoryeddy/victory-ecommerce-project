@@ -91,6 +91,7 @@
                       class="position-absolute add-to-cart" 
                       rounded
                       color="black"
+                      @click="addToCart(product)"
                       >Add to Cart</v-btn
                     >
 
@@ -130,20 +131,14 @@ const maxPrice = ref(100)
 // featured products section
 const store = useStore();
 
-// const fetchData = async () => {
-//   try {
-//     const response = await apiClient.get("products")
-//     const allData = await response.data
-//     console.log(allData)
-//     fetchedProductData.value = allData
-    
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
+
 
 // Get products and cart from the store
 let products = computed(() => store.state.products);
+ function addToCart(product){
+    store.commit('addToCart', product);
+    console.log(store.state.cart)
+  };
 // const cart = computed(() => store.state.cart);
 
  async function getFilteredData(value){
@@ -152,8 +147,10 @@ let products = computed(() => store.state.products);
     store.commit('setProducts', filteredData);
 }
 
+
 onMounted(() => {
   store.dispatch('fetchProducts')
+  store.commit('loadCart')
 })
 </script>
 
@@ -206,6 +203,7 @@ onMounted(() => {
   bottom: 20%;
   left: 28%;
   display: block;
+  z-index:5555;
   transform: translateY(90px);
   transition: all 0.5s ease-in-out;
 }

@@ -63,7 +63,7 @@
     
           <v-btn icon large class="position-relative">
             <v-icon>mdi-shopping-outline</v-icon>
-            <span class="bg-dark pa-1 py-0 fw-bold text-white nav-count">0</span>
+            <span class="bg-dark pa-1 py-0 fw-bold text-white nav-count">{{store.state.cart.length}}</span>
           </v-btn>
       </v-toolbar>
     </div>
@@ -74,7 +74,13 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+
+</script>
 
 <style scoped>
 * {
