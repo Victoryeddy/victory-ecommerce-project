@@ -60,7 +60,10 @@
               step="1"
             ></v-slider>
           </v-col>
-          <v-col cols="12" lg="9">
+          <v-col cols="12" lg="9" justify="center" class="d-flex" v-if="preLoader">
+            <v-img src="../assets/372.gif" width="150" height="150"></v-img>
+          </v-col>
+          <v-col cols="12" lg="9" v-if="!preLoader">
             <v-row>
               <v-col cols="6" md="6" lg="4" v-for="product in products" :key="product.id">
                 <div>
@@ -128,6 +131,8 @@ const priceRange = ref(0)
 const minPrice = ref(0)
 const maxPrice = ref(100)
 
+const preLoader = ref(true)
+
 // featured products section
 const store = useStore();
 
@@ -150,6 +155,7 @@ let products = computed(() => store.state.products);
 
 onMounted(() => {
   store.dispatch('fetchProducts')
+  preLoader.value = false
   store.commit('loadCart')
 })
 </script>

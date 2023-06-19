@@ -249,9 +249,9 @@
                   ₦{{ product.price }}
                 </p>
               </v-card>
-              <p class="text-center mt-4">
+              <!-- <p class="text-center mt-4">
                 <v-btn color="primary" size="large" rounded>Add to cart</v-btn>
-              </p>
+              </p> -->
             </template>
           </vueper-slide>
         </vueper-slides>
