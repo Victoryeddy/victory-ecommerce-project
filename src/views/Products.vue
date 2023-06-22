@@ -29,12 +29,18 @@
             <p class="blog-category-heading font-weight-bold">Category</p>
             <v-list>
               <v-list-item class="border-top"
-                ><v-btn variant="plain" @click="getFilteredData(`men's clothing`)">
+                ><v-btn
+                  variant="plain"
+                  @click="getFilteredData(`men's clothing`)"
+                >
                   Men
                 </v-btn></v-list-item
               >
               <v-list-item class="border-top"
-                ><v-btn variant="plain" @click="getFilteredData(`women's clothing`)">
+                ><v-btn
+                  variant="plain"
+                  @click="getFilteredData(`women's clothing`)"
+                >
                   Women
                 </v-btn></v-list-item
               >
@@ -48,7 +54,6 @@
                   Electronics
                 </v-btn></v-list-item
               >
-             
             </v-list>
 
             <p class="blog-category-heading font-weight-bold mt-8">Filters</p>
@@ -60,12 +65,24 @@
               step="1"
             ></v-slider>
           </v-col>
-          <v-col cols="12" lg="9" justify="center" class="d-flex" v-if="preLoader">
+          <v-col
+            cols="12"
+            lg="9"
+            justify="center"
+            class="d-flex"
+            v-if="preLoader"
+          >
             <v-img src="../assets/372.gif" width="150" height="150"></v-img>
           </v-col>
           <v-col cols="12" lg="9" v-if="!preLoader">
             <v-row>
-              <v-col cols="6" md="6" lg="4" v-for="product in products" :key="product.id">
+              <v-col
+                cols="6"
+                md="6"
+                lg="4"
+                v-for="product in products"
+                :key="product.id"
+              >
                 <div>
                   <v-card class="border-dark fashion-items-card">
                     <v-img
@@ -89,25 +106,67 @@
                         </v-row>
                       </template>
                     </v-img>
-                    <v-icon class="position-absolute heart-button" color="white">mdi-heart-outline</v-icon>
-                    <v-btn
-                      class="position-absolute add-to-cart" 
-                      rounded
-                      color="black"
-                      @click="addToCart(product)"
-                      >Add to Cart</v-btn
+
+                    <v-icon class="position-absolute heart-button" color="white"
+                      >mdi-heart-outline</v-icon
                     >
+                    <v-dialog
+                      transition="dialog-bottom-transition"
+                      width="auto"
+                      v-if="addedToCart"
+                    >
+                      <template v-slot:activator="{ props }">
+                        <v-btn
+                          v-bind="props"
+                          class="position-absolute add-to-cart"
+                          rounded
+                          color="black"
+                          @click="addToCart(product)"
+                          >Add to Cart</v-btn
+                        >
+                      </template>
+                      <template v-slot:default="{ addedToCart }">
+                        <v-card>
+                         
+                          <v-card-text>
+                            <div class="fs-4 pa-3 d-flex flex-column" justify="center">
+                              <v-img
+                                src="../assets/icons8-check-1600.png"
+                                width="300"
+                                height="300"
+                              ></v-img>
+                              <p class="text-capitalize text-center font-weight-bold fs-6">
+                                Added to cart successfully
+                              </p>
+                              <p class="d-none">
+
+                                <a
+                                  target="_blank"
+                                  href="https://icons8.com/icon/vxX2LUXjXqRn/tick-box"
+                                  >Check</a
+                                >
+                                icon by
+                                <a target="_blank" href="https://icons8.com"
+                                  >Icons8</a
+                                >
+                              </p>
+                            </div>
+                          </v-card-text>
+                          
+                        </v-card>
+                      </template>
+                    </v-dialog>
 
                     <div class="card-overlay"></div>
                   </v-card>
                   <p class="font-weight-medium mt-4">
-                    {{product.title}}
+                    {{ product.title }}
                   </p>
-                  <p class="font-xs mt-1">{{getFormattedAmount(product.price)}}</p>
-                 
+                  <p class="font-xs mt-1">
+                    {{ getFormattedAmount(product.price) }}
+                  </p>
                 </div>
               </v-col>
-             
             </v-row>
           </v-col>
         </v-row>
@@ -123,9 +182,8 @@ import Footer from "@/components/Footer.vue"
 import { getFormattedAmount } from "@/utilities"
 
 import { ref, onMounted, computed } from "vue"
-import { useStore } from 'vuex';
+import { useStore } from "vuex"
 import apiClient from "@/plugins/fakeStoreAxios"
-
 
 const priceRange = ref(0)
 const minPrice = ref(0)
@@ -134,29 +192,33 @@ const maxPrice = ref(100)
 const preLoader = ref(true)
 
 // featured products section
-const store = useStore();
-
-
+const store = useStore()
 
 // Get products and cart from the store
-let products = computed(() => store.state.products);
- function addToCart(product){
-    store.commit('addToCart', product);
-    console.log(store.state.cart)
-  };
+const addedToCart = ref(true)
+let products = computed(() => store.state.products)
+function addToCart(product) {
+  store.commit("addToCart", product)
+  // console.log(store.state.cart)
+  setTimeout(() => {
+        addedToCart.value = false;
+      }, 3000);
+}
 // const cart = computed(() => store.state.cart);
 
- async function getFilteredData(value){
-   const response = await apiClient.get("products")
-    const filteredData = response.data.filter(eachData => eachData.category === value);
-    store.commit('setProducts', filteredData);
+async function getFilteredData(value) {
+  const response = await apiClient.get("products")
+  const filteredData = response.data.filter(
+    (eachData) => eachData.category === value
+  )
+  store.commit("setProducts", filteredData)
 }
 
-
 onMounted(() => {
-  store.dispatch('fetchProducts')
+  store.dispatch("fetchProducts")
   preLoader.value = false
-  store.commit('loadCart')
+  store.commit("loadCart")
+  // addedToCart.value = false
 })
 </script>
 
@@ -209,7 +271,7 @@ onMounted(() => {
   bottom: 20%;
   left: 28%;
   display: block;
-  z-index:5555;
+  z-index: 5555;
   transform: translateY(90px);
   transition: all 0.5s ease-in-out;
 }
@@ -218,16 +280,15 @@ onMounted(() => {
   transform: translateY(20px);
 }
 
-.heart-button{
-  top:3%;
-  left:88%;
-  display:none;
+.heart-button {
+  top: 3%;
+  left: 88%;
+  display: none;
   transition: all 0.5s ease-in-out;
-
 }
 
-.fashion-items-card:hover .heart-button{
-  display:block;
+.fashion-items-card:hover .heart-button {
+  display: block;
 }
 
 @media only screen and (max-width: 768px) {

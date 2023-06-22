@@ -15,9 +15,12 @@ export default createStore({
       state.products = products
     },
     addToCart(state, product) {
-      state.cart.push(product)
+      const existingProduct = state.cart.find(item => item.id == product.id);
+      if(!existingProduct){
+        state.cart.push(product)
+        localStorage.setItem(CART_ITEMS, JSON.stringify(state.cart))
+      }
 
-      localStorage.setItem(CART_ITEMS, JSON.stringify(state.cart))
     },
     loadCart(state) {
       const savedCarts = localStorage.getItem(CART_ITEMS)
