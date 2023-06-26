@@ -111,13 +111,14 @@
                       >mdi-heart-outline</v-icon
                     >
                     <v-dialog
-                      transition="dialog-bottom-transition"
                       width="auto"
-                      v-if="addedToCart"
+                      v-model="showAddedToCart"
+                      hide-overlay
                     >
-                      <template v-slot:activator="{ props }">
+                      <template v-slot:activator="{ on, attrs }">
                         <v-btn
-                          v-bind="props"
+                          v-bind="attrs"
+                          v-on="on"
                           class="position-absolute add-to-cart"
                           rounded
                           color="black"
@@ -125,36 +126,44 @@
                           >Add to Cart</v-btn
                         >
                       </template>
-                      <template v-slot:default="{ addedToCart }">
-                        <v-card>
-                         
-                          <v-card-text>
-                            <div class="fs-4 pa-3 d-flex flex-column" justify="center">
-                              <v-img
-                                src="../assets/icons8-check-1600.png"
-                                width="300"
-                                height="300"
-                              ></v-img>
-                              <p class="text-capitalize text-center font-weight-bold fs-6">
-                                Added to cart successfully
-                              </p>
-                              <p class="d-none">
-
-                                <a
-                                  target="_blank"
-                                  href="https://icons8.com/icon/vxX2LUXjXqRn/tick-box"
-                                  >Check</a
-                                >
-                                icon by
-                                <a target="_blank" href="https://icons8.com"
-                                  >Icons8</a
-                                >
-                              </p>
-                            </div>
-                          </v-card-text>
-                          
-                        </v-card>
+                      <template v-slot:overlay="{ active, hide }">
+                        <div
+                          class="v-overlay"
+                          :class="{ 'v-overlay--active': active }"
+                          @click="hide"
+                        ></div>
                       </template>
+                      <v-card>
+                        <v-card-text>
+                          <div
+                            class="fs-4 pa-3 d-flex flex-column"
+                            justify="center"
+                          >
+                            <v-img
+                              src="../assets/icons8-check-1600.png"
+                              width="300"
+                              height="300"
+                            ></v-img>
+                            <p
+                              class="text-capitalize text-center font-weight-bold fs-6"
+                            >
+                              Added to cart successfully
+                            </p>
+                            <p class="d-none">
+                              <a
+                                target="_blank"
+                                href="https://icons8.com/icon/vxX2LUXjXqRn/tick-box"
+                                >Check</a
+                              >
+                              icon by
+                              <a target="_blank" href="https://icons8.com"
+                                >Icons8</a
+                              >
+                            </p>
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                      <!-- </template> -->
                     </v-dialog>
 
                     <div class="card-overlay"></div>
@@ -163,7 +172,7 @@
                     {{ product.title }}
                   </p>
                   <p class="font-xs mt-1">
-                    {{ getFormattedAmount(product.price) }}
+                    ₦{{ getFormattedAmount(Math.ceil(product.price)) }}
                   </p>
                 </div>
               </v-col>
@@ -181,7 +190,7 @@ import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 import { getFormattedAmount } from "@/utilities"
 
-import { ref, onMounted, computed } from "vue"
+import { ref, onMounted, computed, watch } from "vue"
 import { useStore } from "vuex"
 import apiClient from "@/plugins/fakeStoreAxios"
 
@@ -195,16 +204,19 @@ const preLoader = ref(true)
 const store = useStore()
 
 // Get products and cart from the store
-const addedToCart = ref(true)
+const showAddedToCart = ref(false)
 let products = computed(() => store.state.products)
 function addToCart(product) {
   store.commit("addToCart", product)
-  // console.log(store.state.cart)
-  setTimeout(() => {
-        addedToCart.value = false;
-      }, 3000);
+  showAddedToCart.value = true
 }
-// const cart = computed(() => store.state.cart);
+watch(showAddedToCart, (newValue) => {
+  if (newValue) {
+    setTimeout(() => {
+      showAddedToCart.value = false
+    }, 3000)
+  }
+})
 
 async function getFilteredData(value) {
   const response = await apiClient.get("products")
