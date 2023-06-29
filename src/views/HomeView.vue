@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <!-- <Navbar /> -->
     <v-carousel cycle hide-delimiters>
       <v-carousel-item
         v-for="item in carouselData.items"
@@ -464,12 +464,12 @@
       </v-container>
     </section>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
 <script setup>
-import Navbar from "@/components/Navbar.vue"
+// import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 
 import { VueperSlides, VueperSlide } from "vueperslides"
@@ -646,8 +646,6 @@ onMounted(() => {
 .font-xs {
   font-size: 0.875rem;
 }
-
-
 
 .text-dark-grey {
   color: #131313b3;

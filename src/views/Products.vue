@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <!-- <Navbar /> -->
 
     <div class="contact-us-picture position-relative">
       <v-img
@@ -186,7 +186,7 @@
 </template>
 
 <script setup>
-import Navbar from "@/components/Navbar.vue"
+// import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 import { getFormattedAmount } from "@/utilities"
 

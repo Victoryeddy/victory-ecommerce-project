@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <!-- <Navbar /> -->
 
     <div class="contact-us-picture position-relative">
       <v-img
@@ -55,11 +55,7 @@
           <v-col cols="12" lg="4">
             <v-sheet class="pa-2 mt-4">
               <v-card class="fashion-items-card mb-2 border-dark">
-                <v-img
-                  src="@/assets/SPS_1374-removebg-preview.png"
-                  cover
-                 
-                >
+                <v-img src="@/assets/SPS_1374-removebg-preview.png" cover>
                   <template v-slot:placeholder>
                     <v-row
                       class="fill-height ma-0"
@@ -85,7 +81,7 @@
 </template>
 
 <script setup>
-import Navbar from "@/components/Navbar.vue"
+// import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <!-- <Navbar /> -->
 
     <div class="contact-us-picture position-relative">
       <v-img
@@ -25,11 +25,15 @@
       <v-container>
         <v-row>
           <v-col cols="12" lg="8">
-            <div v-if="isLoading" class="d-flex" align="center" justify="center"  >
-             <v-img src="@/assets/802.gif" width="100" height="200"></v-img>
+            <div
+              v-if="isLoading"
+              class="d-flex"
+              align="center"
+              justify="center"
+            >
+              <v-img src="@/assets/802.gif" width="100" height="200"></v-img>
             </div>
             <div v-else>
-
               <div v-for="article in allArticles" :key="article.title">
                 <v-card class="mt-5 border-dark fashion-items-card">
                   <v-img :src="article.image" cover>
@@ -46,7 +50,7 @@
                       </v-row>
                     </template>
                   </v-img>
-  
+
                   <div class="card-overlay"></div>
                 </v-card>
                 <p class="font-weight-medium mt-4">
@@ -125,7 +129,7 @@
 </template>
 
 <script setup>
-import Navbar from "@/components/Navbar.vue"
+// import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
 import { getFormattedDate } from "@/utilities"
 
@@ -159,14 +163,11 @@ const getFilteredData = async (category) => {
     )
     const data = await response.data.articles
     allArticles.value = data
-      isLoading.value = false
-    
-    
+    isLoading.value = false
   } catch (error) {
     console.log(error)
   }
 }
-
 
 onMounted(() => {
   // console.log(process.env.VUE_APP_NEWS_API_KEY)
