@@ -75,23 +75,27 @@
       >
         <!-- <p>hello world</p> -->
         <v-card flat class="pa-5">
-          <v-card-actions>
+          <v-card-actions class="mb-6">
             <p class="font-weight-bold text-uppercase cart-text">Cart</p>
             <v-spacer></v-spacer>
-            <v-btn
-              density="compact"
-              icon="mdi-window-close"
-              size="x-large"
-              @click="drawer = false"
-            ></v-btn>
+            <v-btn icon large @click="drawer = false">
+              <v-icon icon="mdi-window-close"></v-icon>
+            </v-btn>
           </v-card-actions>
 
-          <div v-for="cart in carts" :key="cart.id" class="mt-8">
-            <div class="d-flex">
-              <v-img :src="cart.image" width="180" height="100"></v-img>
-              <div class="ms-5">
-                <p>{{ cart.title }}</p>
-                <p class="mt-3">₦{{ Math.ceil(cart.price) }}</p>
+          <div v-for="cart in carts" :key="cart.id" class="mt-8 cart-container">
+            <div class="d-flex justify-space-between">
+              <div>
+                <v-img :src="cart.image" width="300" height="130"></v-img>
+                <div class="ms-4 me-3 mt-3">
+                  <p>{{ cart.title }}</p>
+                  <p class="mt-3">₦{{ Math.ceil(cart.price) }}</p>
+                </div>
+              </div>
+              <div>
+                <v-btn icon class="elevation-0" @click="removeFromCart(cart)">
+                  <v-icon icon="mdi-window-close"></v-icon>
+                </v-btn>
               </div>
             </div>
           </div>
@@ -111,6 +115,10 @@ import { ref, computed } from "vue"
 const store = useStore()
 const drawer = ref(false)
 const carts = computed(() => store.state.cart)
+
+function removeFromCart(cartItem) {
+  store.commit("removeFromCart", cartItem)
+}
 </script>
 
 <style scoped>
@@ -141,5 +149,11 @@ const carts = computed(() => store.state.cart)
   position: absolute;
   bottom: 50%;
   left: 56%;
+}
+
+.cart-container {
+  border-bottom: 1px solid #eeeeee;
+  border-top: 1px solid #eeeeee;
+  padding: 1rem;
 }
 </style>

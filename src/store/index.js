@@ -16,16 +16,27 @@ export default createStore({
     },
     addToCart(state, product) {
       const existingProduct = state.cart.find(item => item.id == product.id);
-      if(!existingProduct){
+      if (!existingProduct) {
         state.cart.push(product)
         localStorage.setItem(CART_ITEMS, JSON.stringify(state.cart))
       }
 
     },
+
+    removeFromCart(state, product) {
+      const index = state.cart.find(item => item.id == product.id)
+      // console.log(index);
+      if (index !== -1) {
+        state.cart.splice(index, 1);
+        localStorage.setItem(CART_ITEMS, JSON.stringify(state.cart))
+
+      }
+    },
     loadCart(state) {
       const savedCarts = localStorage.getItem(CART_ITEMS)
       if (savedCarts) {
         state.cart = JSON.parse(savedCarts)
+
       }
     }
   },
@@ -36,7 +47,6 @@ export default createStore({
         const products = await response.data
         // console.log(products)
         commit('setProducts', products);
-        console.log(state.products)
         // console.log(state.cart)
       } catch (error) {
         state.errors = error

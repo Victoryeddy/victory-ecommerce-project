@@ -483,6 +483,8 @@ import apiClient from "@/plugins/fakeStoreAxios"
 const currentYear = new Date().getFullYear()
 // console.log(currentYear)
 
+ref
+
 // countdown section
 
 const remainingTime = reactive({
