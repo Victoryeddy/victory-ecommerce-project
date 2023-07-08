@@ -107,8 +107,13 @@
                       </template>
                     </v-img>
 
-                    <v-icon class="position-absolute heart-button" color="white"
-                      >mdi-heart-outline</v-icon
+                    
+                    <v-icon
+                      class="position-absolute heart-button"
+                      
+                      color="red"
+                      @click="addLovedItem(product)"
+                      >{{ product.liked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon
                     >
                     <v-btn
                       class="position-absolute add-to-cart"
@@ -125,7 +130,22 @@
                       multi-line="true"
                       variant="tonal"
                     >
-                      <span class="text-black">Added Successfully</span>
+                      <span class="text-black">Added To Cart Successfully</span>
+
+                      <template v-slot:actions>
+                        <v-btn color="black" @click="snackBar = false">
+                          Close
+                        </v-btn>
+                      </template>
+                    </v-snackbar>
+                    <v-snackbar
+                      v-model="showLovedItemMessage"
+                      :timeout="timeout"
+                      color="orange"
+                      multi-line="true"
+                      variant="tonal"
+                    >
+                      <span class="text-black">Added To Wish List</span>
 
                       <template v-slot:actions>
                         <v-btn color="black" @click="snackBar = false">
@@ -158,7 +178,7 @@
 import Footer from "@/components/Footer.vue"
 import { getFormattedAmount } from "@/utilities"
 
-import { ref, onMounted, computed, watch } from "vue"
+import { ref, onMounted , computed } from "vue"
 import { useStore } from "vuex"
 import apiClient from "@/plugins/fakeStoreAxios"
 
@@ -172,13 +192,22 @@ const preLoader = ref(true)
 const store = useStore()
 
 const snackBar = ref(false)
+const showLovedItemMessage = ref(false)
 const timeout = ref(2000)
 // Get products and cart from the store
 
-let products = computed(() => store.state.products)
+const products = computed(() => store.getters.productsWithLiked)
+console.log(products)
 function addToCart(product) {
   store.commit("addToCart", product)
   snackBar.value = true
+}
+
+function addLovedItem(product) {
+  store.commit("addLovedItems", product)
+  showLovedItemMessage.value = true
+  // product.liked = !product.liked; 
+  product.liked = !product.liked
 }
 
 async function getFilteredData(value) {
@@ -193,6 +222,7 @@ onMounted(() => {
   store.dispatch("fetchProducts")
   preLoader.value = false
   store.commit("loadCart")
+  store.commit("loadLovedItemsInCart")
   // addedToCart.value = false
 })
 </script>
@@ -258,6 +288,8 @@ onMounted(() => {
 .heart-button {
   top: 3%;
   left: 88%;
+  z-index: 5555;
+
   display: none;
   transition: all 0.5s ease-in-out;
 }

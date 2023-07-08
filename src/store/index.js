@@ -1,12 +1,14 @@
 import { createStore } from 'vuex'
 import apiClient from "@/plugins/fakeStoreAxios"
 const CART_ITEMS = 'cart';
+const LOVED_ITEMS = 'lovedItems';
 
 export default createStore({
   state: {
     products: [],
     cart: [],
     errors: [],
+    lovedItems: []
   },
   getters: {
 
@@ -14,12 +16,28 @@ export default createStore({
       return state.cart.reduce((total, cartItem) => {
         return total + cartItem.price;
       }, 0);
-    }
+    },
+    getTotalPriceInLovedItems(state){
+      return state.lovedItems.reduce((total, cartItem) => {
+        return total + cartItem.price;
+      }, 0);
+    },
+
+    productsWithLiked(state) {
+      return state.products.map(product => ({
+        ...product,
+        liked: false,
+      }));
+    },
   },
   mutations: {
     setProducts(state, products) {
       state.products = products
     },
+
+   
+
+    // cart items
     addToCart(state, product) {
       const existingProduct = state.cart.find(item => item.id == product.id);
       if (!existingProduct) {
@@ -45,7 +63,37 @@ export default createStore({
         state.cart = JSON.parse(savedCarts)
 
       }
-    }
+    },
+
+    // loved items
+
+     addLovedItems(state, product) {
+      const lovedItem = state.lovedItems.find(item => item.id == product.id);
+      if (!lovedItem) {
+        state.lovedItems.push(product)
+        localStorage.setItem(LOVED_ITEMS, JSON.stringify(state.lovedItems))
+      }
+
+    },
+
+    removeFromLovedItems(state, product) {
+      const newLovedItems = state.lovedItems.filter(item => item.id !== product.id);
+
+      // console.log(index);
+      if (newLovedItems) {
+        state.lovedItems = newLovedItems;
+        localStorage.setItem(LOVED_ITEMS, JSON.stringify(state.lovedItems))
+
+      }
+    },
+
+    loadLovedItemsInCart(state) {
+      const lovedItemsInCarts = localStorage.getItem(LOVED_ITEMS)
+      if (lovedItemsInCarts) {
+        state.lovedItems = JSON.parse(lovedItemsInCarts)
+
+      }
+    },
   },
   actions: {
     async fetchProducts({ state, commit }) {

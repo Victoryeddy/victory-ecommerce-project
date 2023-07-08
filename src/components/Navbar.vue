@@ -51,8 +51,14 @@
         </div>
         <v-spacer></v-spacer>
 
-        <v-btn icon large>
+        <v-btn icon large >
           <v-icon>mdi-account-circle-outline</v-icon>
+        </v-btn>
+        <v-btn icon large  @click.stop="lovedItemsDrawer = !lovedItemsDrawer">
+          <v-icon>mdi-heart-outline</v-icon>
+          <span class="bg-dark pa-1 py-0 fw-bold text-white nav-count">{{
+            store.state.lovedItems.length
+          }}</span>
         </v-btn>
 
         <v-btn
@@ -110,7 +116,54 @@
               </div>
 
             </div>
-            <p class="d-flex justify-space-between mt-6"><span class="total-text font-weight-bold">Total</span>  <span class="mt-3 total-text font-weight-bold"> ₦{{Math.ceil(store.getters.getTotalPriceInCart)  }}</span></p>
+            <p class="d-flex justify-space-between mt-6"><span class="total-text font-weight-bold">Total</span>  <span class="mt-1 total-text font-weight-bold"> ₦{{Math.ceil(store.getters.getTotalPriceInCart)  }}</span></p>
+          </div>
+        </v-card>
+      </v-navigation-drawer>
+      <v-navigation-drawer
+        v-model="lovedItemsDrawer"
+        location="right"
+        temporary
+        width="400"
+      >
+        <!-- <p>hello world</p> -->
+        <v-card flat class="pa-5">
+          <v-card-actions class="mb-6">
+            <p class="font-weight-bold text-uppercase cart-text">Wish List</p>
+            <v-spacer></v-spacer>
+            <v-btn icon large @click="lovedItemsDrawer = false">
+              <v-icon icon="mdi-window-close"></v-icon>
+            </v-btn>
+          </v-card-actions>
+
+          <p v-if="lovedItems.length <= 0" class="text-center font-weight-bold">
+            No items In Your Wish List
+          </p>
+          <div v-else>
+            <div
+              v-for="lovedItem in lovedItems"
+              :key="lovedItem.id"
+              class="mt-8 cart-container"
+            >
+              <div class="d-flex justify-space-between">
+                <div>
+                  <v-img :src="lovedItem.image" width="300" height="130"></v-img>
+                  <div class="ms-4 me-3 mt-3 text-center">
+                    <p>{{ lovedItem.title }}</p>
+                    <p class="mt-3 font-weight-bold fs-1">
+                      ₦{{ Math.ceil(lovedItem.price) }}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <v-btn icon class="elevation-0" @click="removeFromLovedItem(lovedItem)">
+                    <v-icon icon="mdi-window-close"></v-icon>
+                  </v-btn>
+                </div>
+              </div>
+
+            </div>
+            <p class="d-flex justify-space-between mt-6"><span class="total-text font-weight-bold">Total</span>  <span class="mt-1 total-text font-weight-bold"> ₦{{Math.ceil(store.getters.getTotalPriceInLovedItems)  }}</span></p>
           </div>
         </v-card>
       </v-navigation-drawer>
@@ -127,11 +180,18 @@ import { ref, computed } from "vue"
 
 const store = useStore()
 const drawer = ref(false)
+const lovedItemsDrawer = ref(false)
 const carts = computed(() => store.state.cart)
+
+const lovedItems = computed(() => store.state.lovedItems)
 
 
 function removeFromCart(cartItem) {
-  store.commit("removeFromCart", cartItem)
+  store.commit("removeFromCart", cartItem);
+}
+
+function removeFromLovedItem(item){
+  store.commit('removeFromLovedItems' , item);
 }
 
 </script>
