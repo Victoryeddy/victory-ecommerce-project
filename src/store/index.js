@@ -9,6 +9,12 @@ export default createStore({
     errors: [],
   },
   getters: {
+
+    getTotalPriceInCart(state){
+      return state.cart.reduce((total, cartItem) => {
+        return total + cartItem.price;
+      }, 0);
+    }
   },
   mutations: {
     setProducts(state, products) {
@@ -46,9 +52,7 @@ export default createStore({
       try {
         const response = await apiClient.get("products")
         const products = await response.data
-        // console.log(products)
         commit('setProducts', products);
-        // console.log(state.cart)
       } catch (error) {
         state.errors = error
       }

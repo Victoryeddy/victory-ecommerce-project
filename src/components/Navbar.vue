@@ -108,7 +108,9 @@
                   </v-btn>
                 </div>
               </div>
+
             </div>
+            <p class="d-flex justify-space-between mt-6"><span class="total-text font-weight-bold">Total</span>  <span class="mt-3 total-text font-weight-bold"> ₦{{Math.ceil(store.getters.getTotalPriceInCart)  }}</span></p>
           </div>
         </v-card>
       </v-navigation-drawer>
@@ -127,19 +129,24 @@ const store = useStore()
 const drawer = ref(false)
 const carts = computed(() => store.state.cart)
 
+
 function removeFromCart(cartItem) {
   store.commit("removeFromCart", cartItem)
 }
+
 </script>
 
 <style scoped>
 * {
   font-family: "Montserrat", sans-serif;
-  /* outline: 1px solid red; */
 }
 
 .cart-text {
   font-size: 1.5rem;
+}
+
+.total-text{
+  font-size:1.7rem;
 }
 .nav-link {
   color: rgb(126, 123, 123);
