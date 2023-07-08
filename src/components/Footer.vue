@@ -134,7 +134,7 @@
               ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-btn rounded color="primary" size="large">subscribe</v-btn>
+              <v-btn rounded color="orange" size="large">subscribe</v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -159,7 +159,6 @@
 </template>
 
 <script setup>
-
 // current date
 const currentYear = new Date().getFullYear()
 </script>

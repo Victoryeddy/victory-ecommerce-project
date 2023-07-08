@@ -24,10 +24,11 @@ export default createStore({
     },
 
     removeFromCart(state, product) {
-      const index = state.cart.find(item => item.id == product.id)
+      const newItems = state.cart.filter(item => item.id !== product.id);
+
       // console.log(index);
-      if (index !== -1) {
-        state.cart.splice(index, 1);
+      if (newItems) {
+        state.cart = newItems;
         localStorage.setItem(CART_ITEMS, JSON.stringify(state.cart))
 
       }

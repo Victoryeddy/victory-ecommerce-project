@@ -110,61 +110,29 @@
                     <v-icon class="position-absolute heart-button" color="white"
                       >mdi-heart-outline</v-icon
                     >
-                    <v-dialog
-                      width="auto"
-                      v-model="showAddedToCart"
-                      hide-overlay
+                    <v-btn
+                      class="position-absolute add-to-cart"
+                      rounded
+                      color="black"
+                      @click="addToCart(product)"
+                      >Add to Cart</v-btn
                     >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                          v-bind="attrs"
-                          v-on="on"
-                          class="position-absolute add-to-cart"
-                          rounded
-                          color="black"
-                          @click="addToCart(product)"
-                          >Add to Cart</v-btn
-                        >
+
+                    <v-snackbar
+                      v-model="snackBar"
+                      :timeout="timeout"
+                      color="orange"
+                      multi-line="true"
+                      variant="tonal"
+                    >
+                      <span class="text-black">Added Successfully</span>
+
+                      <template v-slot:actions>
+                        <v-btn color="black" @click="snackBar = false">
+                          Close
+                        </v-btn>
                       </template>
-                      <template v-slot:overlay="{ active, hide }">
-                        <div
-                          class="v-overlay"
-                          :class="{ 'v-overlay--active': active }"
-                          @click="hide"
-                        ></div>
-                      </template>
-                      <v-card>
-                        <v-card-text>
-                          <div
-                            class="fs-4 pa-3 d-flex flex-column"
-                            justify="center"
-                          >
-                            <v-img
-                              src="../assets/icons8-check-1600.png"
-                              width="300"
-                              height="300"
-                            ></v-img>
-                            <p
-                              class="text-capitalize text-center font-weight-bold fs-6"
-                            >
-                              Added to cart successfully
-                            </p>
-                            <p class="d-none">
-                              <a
-                                target="_blank"
-                                href="https://icons8.com/icon/vxX2LUXjXqRn/tick-box"
-                                >Check</a
-                              >
-                              icon by
-                              <a target="_blank" href="https://icons8.com"
-                                >Icons8</a
-                              >
-                            </p>
-                          </div>
-                        </v-card-text>
-                      </v-card>
-                      <!-- </template> -->
-                    </v-dialog>
+                    </v-snackbar>
 
                     <div class="card-overlay"></div>
                   </v-card>
@@ -203,20 +171,15 @@ const preLoader = ref(true)
 // featured products section
 const store = useStore()
 
+const snackBar = ref(false)
+const timeout = ref(2000)
 // Get products and cart from the store
-const showAddedToCart = ref(false)
+
 let products = computed(() => store.state.products)
 function addToCart(product) {
   store.commit("addToCart", product)
-  showAddedToCart.value = true
+  snackBar.value = true
 }
-watch(showAddedToCart, (newValue) => {
-  if (newValue) {
-    setTimeout(() => {
-      showAddedToCart.value = false
-    }, 3000)
-  }
-})
 
 async function getFilteredData(value) {
   const response = await apiClient.get("products")

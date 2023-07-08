@@ -83,19 +83,30 @@
             </v-btn>
           </v-card-actions>
 
-          <div v-for="cart in carts" :key="cart.id" class="mt-8 cart-container">
-            <div class="d-flex justify-space-between">
-              <div>
-                <v-img :src="cart.image" width="300" height="130"></v-img>
-                <div class="ms-4 me-3 mt-3">
-                  <p>{{ cart.title }}</p>
-                  <p class="mt-3">₦{{ Math.ceil(cart.price) }}</p>
+          <p v-if="carts.length <= 0" class="text-center font-weight-bold">
+            No items In Your Cart
+          </p>
+          <div v-else>
+            <div
+              v-for="cart in carts"
+              :key="cart.id"
+              class="mt-8 cart-container"
+            >
+              <div class="d-flex justify-space-between">
+                <div>
+                  <v-img :src="cart.image" width="300" height="130"></v-img>
+                  <div class="ms-4 me-3 mt-3 text-center">
+                    <p>{{ cart.title }}</p>
+                    <p class="mt-3 font-weight-bold fs-1">
+                      ₦{{ Math.ceil(cart.price) }}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <v-btn icon class="elevation-0" @click="removeFromCart(cart)">
-                  <v-icon icon="mdi-window-close"></v-icon>
-                </v-btn>
+                <div>
+                  <v-btn icon class="elevation-0" @click="removeFromCart(cart)">
+                    <v-icon icon="mdi-window-close"></v-icon>
+                  </v-btn>
+                </div>
               </div>
             </div>
           </div>

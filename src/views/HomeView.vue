@@ -19,7 +19,7 @@
               New Arrivals
             </p>
             <p class="text-center mt-8">
-              <v-btn class="fw-bold fs-3" size="large" color="primary" rounded
+              <v-btn class="fw-bold fs-3" size="large" color="orange" rounded
                 >Shop Now</v-btn
               >
             </p>
@@ -52,9 +52,7 @@
 
                   <div class="card-overlay"></div>
                   <div class="position-absolute category-cards">
-                    <v-btn color="primary" rounded size="x-large"
-                      >Dresses</v-btn
-                    >
+                    <v-btn color="orange" rounded size="x-large">Dresses</v-btn>
                   </div>
                 </v-card>
               </v-sheet>
@@ -79,7 +77,7 @@
                   </v-img>
                   <div class="card-overlay"></div>
                   <div class="position-absolute category-cards">
-                    <v-btn color="primary" rounded size="x-large"
+                    <v-btn color="orange" rounded size="x-large"
                       >Sunglasses</v-btn
                     >
                   </div>
@@ -110,9 +108,7 @@
                   </v-img>
                   <div class="card-overlay"></div>
                   <div class="position-absolute category-cards">
-                    <v-btn color="primary" rounded size="x-large"
-                      >Watches</v-btn
-                    >
+                    <v-btn color="orange" rounded size="x-large">Watches</v-btn>
                   </div>
                 </v-card>
               </v-sheet>
@@ -137,7 +133,7 @@
                   </v-img>
                   <div class="card-overlay"></div>
                   <div class="position-absolute category-cards">
-                    <v-btn color="primary" rounded size="x-large"
+                    <v-btn color="orange" rounded size="x-large"
                       >Footwear</v-btn
                     >
                   </div>
@@ -168,7 +164,7 @@
                   </v-img>
                   <div class="card-overlay"></div>
                   <div class="position-absolute category-cards">
-                    <v-btn color="primary" rounded size="x-large">Bags</v-btn>
+                    <v-btn color="orange" rounded size="x-large">Bags</v-btn>
                   </div>
                 </v-card>
               </v-sheet>
@@ -190,7 +186,7 @@
                     <v-btn
                       class="text-uppercase mt-5"
                       rounded
-                      color="primary"
+                      color="orange"
                       size="large"
                       >sign up</v-btn
                     >
@@ -250,7 +246,7 @@
                 </p>
               </v-card>
               <!-- <p class="text-center mt-4">
-                <v-btn color="primary" size="large" rounded>Add to cart</v-btn>
+                <v-btn color="orange" size="large" rounded>Add to cart</v-btn>
               </p> -->
             </template>
           </vueper-slide>
