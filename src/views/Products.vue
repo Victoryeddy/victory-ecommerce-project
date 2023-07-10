@@ -64,17 +64,10 @@
               color="orange"
               step="1"
             ></v-slider>
+          
           </v-col>
-          <v-col
-            cols="12"
-            lg="9"
-            justify="center"
-            class="d-flex"
-            v-if="preLoader"
-          >
-            <v-img src="../assets/372.gif" width="150" height="150"></v-img>
-          </v-col>
-          <v-col cols="12" lg="9" v-if="!preLoader">
+          
+          <v-col cols="12" lg="9">
             <v-row>
               <v-col
                 cols="6"
@@ -83,6 +76,7 @@
                 v-for="product in products"
                 :key="product.id"
               >
+             
                 <div>
                   <v-card class="border-dark fashion-items-card">
                     <v-img
@@ -197,6 +191,8 @@ const timeout = ref(2000)
 // Get products and cart from the store
 
 const products = computed(() => store.getters.productsWithLiked)
+
+
 console.log(products)
 function addToCart(product) {
   store.commit("addToCart", product)
@@ -220,7 +216,7 @@ async function getFilteredData(value) {
 
 onMounted(() => {
   store.dispatch("fetchProducts")
-  preLoader.value = false
+  // preLoader.value = false
   store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
   // addedToCart.value = false

@@ -29,10 +29,10 @@
       <v-toolbar color="white" class="elevation-1 pa-2 px-6">
         <span>
           <v-img
-            src="@/assets/fashionLogo.png.png"
+            src="@/assets/Free_Sample_By_Wix.jpeg"
             alt="fashion logo"
-            width="120"
-            height="50"
+            width="150"
+            height="60"
           ></v-img>
         </span>
         <v-spacer></v-spacer>
@@ -51,10 +51,10 @@
         </div>
         <v-spacer></v-spacer>
 
-        <v-btn icon large >
+        <v-btn icon large>
           <v-icon>mdi-account-circle-outline</v-icon>
         </v-btn>
-        <v-btn icon large  @click.stop="lovedItemsDrawer = !lovedItemsDrawer">
+        <v-btn icon large @click.stop="lovedItemsDrawer = !lovedItemsDrawer">
           <v-icon>mdi-heart-outline</v-icon>
           <span class="bg-dark pa-1 py-0 fw-bold text-white nav-count">{{
             store.state.lovedItems.length
@@ -89,9 +89,16 @@
             </v-btn>
           </v-card-actions>
 
-          <p v-if="carts.length <= 0" class="text-center font-weight-bold">
-            No items In Your Cart
-          </p>
+          <div v-if="carts.length <= 0">
+            <p class="d-flex justify-content-center">
+              <v-img
+                src="@/assets/icons8-disappointed-100.png"
+                width="300"
+                height="150"
+              ></v-img>
+            </p>
+            <p class="text-center font-weight-bold">No items In Your Cart</p>
+          </div>
           <div v-else>
             <div
               v-for="cart in carts"
@@ -104,7 +111,7 @@
                   <div class="ms-4 me-3 mt-3 text-center">
                     <p>{{ cart.title }}</p>
                     <p class="mt-3 font-weight-bold fs-1">
-                      ₦{{ Math.ceil(cart.price) }}
+                      ₦{{ getFormattedAmount(Math.ceil(cart.price)) }}
                     </p>
                   </div>
                 </div>
@@ -114,9 +121,17 @@
                   </v-btn>
                 </div>
               </div>
-
             </div>
-            <p class="d-flex justify-space-between mt-6"><span class="total-text font-weight-bold">Total</span>  <span class="mt-1 total-text font-weight-bold"> ₦{{Math.ceil(store.getters.getTotalPriceInCart)  }}</span></p>
+            <p class="d-flex justify-space-between mt-6">
+              <span class="total-text font-weight-bold">Total</span>
+              <span class="mt-1 total-text font-weight-bold">
+                ₦{{
+                  getFormattedAmount(
+                    Math.ceil(store.getters.getTotalPriceInCart)
+                  )
+                }}</span
+              >
+            </p>
           </div>
         </v-card>
       </v-navigation-drawer>
@@ -136,9 +151,18 @@
             </v-btn>
           </v-card-actions>
 
-          <p v-if="lovedItems.length <= 0" class="text-center font-weight-bold">
-            No items In Your Wish List
-          </p>
+          <div v-if="lovedItems.length <= 0">
+            <p class="d-flex justify-content-center">
+              <v-img
+                src="@/assets/icons8-disappointed-100.png"
+                width="300"
+                height="150"
+              ></v-img>
+            </p>
+            <p class="text-center font-weight-bold">
+              No items In Your Wish List
+            </p>
+          </div>
           <div v-else>
             <div
               v-for="lovedItem in lovedItems"
@@ -147,23 +171,39 @@
             >
               <div class="d-flex justify-space-between">
                 <div>
-                  <v-img :src="lovedItem.image" width="300" height="130"></v-img>
+                  <v-img
+                    :src="lovedItem.image"
+                    width="300"
+                    height="130"
+                  ></v-img>
                   <div class="ms-4 me-3 mt-3 text-center">
                     <p>{{ lovedItem.title }}</p>
                     <p class="mt-3 font-weight-bold fs-1">
-                      ₦{{ Math.ceil(lovedItem.price) }}
+                      ₦{{ getFormattedAmount(Math.ceil(lovedItem.price)) }}
                     </p>
                   </div>
                 </div>
                 <div>
-                  <v-btn icon class="elevation-0" @click="removeFromLovedItem(lovedItem)">
+                  <v-btn
+                    icon
+                    class="elevation-0"
+                    @click="removeFromLovedItem(lovedItem)"
+                  >
                     <v-icon icon="mdi-window-close"></v-icon>
                   </v-btn>
                 </div>
               </div>
-
             </div>
-            <p class="d-flex justify-space-between mt-6"><span class="total-text font-weight-bold">Total</span>  <span class="mt-1 total-text font-weight-bold"> ₦{{Math.ceil(store.getters.getTotalPriceInLovedItems)  }}</span></p>
+            <p class="d-flex justify-space-between mt-6">
+              <span class="total-text font-weight-bold">Total</span>
+              <span class="mt-1 total-text font-weight-bold">
+                ₦{{
+                  getFormattedAmount(
+                    Math.ceil(store.getters.getTotalPriceInLovedItems)
+                  )
+                }}</span
+              >
+            </p>
           </div>
         </v-card>
       </v-navigation-drawer>
@@ -177,6 +217,7 @@
 <script setup>
 import { useStore } from "vuex"
 import { ref, computed } from "vue"
+import { getFormattedAmount } from "@/utilities"
 
 const store = useStore()
 const drawer = ref(false)
@@ -185,15 +226,13 @@ const carts = computed(() => store.state.cart)
 
 const lovedItems = computed(() => store.state.lovedItems)
 
-
 function removeFromCart(cartItem) {
-  store.commit("removeFromCart", cartItem);
+  store.commit("removeFromCart", cartItem)
 }
 
-function removeFromLovedItem(item){
-  store.commit('removeFromLovedItems' , item);
+function removeFromLovedItem(item) {
+  store.commit("removeFromLovedItems", item)
 }
-
 </script>
 
 <style scoped>
@@ -205,8 +244,8 @@ function removeFromLovedItem(item){
   font-size: 1.5rem;
 }
 
-.total-text{
-  font-size:1.7rem;
+.total-text {
+  font-size: 1.7rem;
 }
 .nav-link {
   color: rgb(126, 123, 123);

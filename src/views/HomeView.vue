@@ -19,7 +19,12 @@
               New Arrivals
             </p>
             <p class="text-center mt-8">
-              <v-btn class="fw-bold fs-3" size="large" color="orange" rounded
+              <v-btn
+                class="fw-bold fs-3"
+                size="large"
+                color="orange"
+                rounded
+                to="/products"
                 >Shop Now</v-btn
               >
             </p>
@@ -28,185 +33,70 @@
       </v-carousel-item>
     </v-carousel>
 
-    <v-container>
-      <v-row>
-        <v-col align-self="start" cols="12" md="4">
-          <v-row class="flex-column">
-            <v-col align-self="start">
-              <v-sheet class="pa-2 mt-5">
-                <v-card class="fashion-items-card mb-2 border-dark">
-                  <v-img src="@/assets/banner-02.jpg" cover>
-                    <template v-slot:placeholder>
-                      <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                      >
-                        <v-progress-circular
-                          indeterminate
-                          color="grey-lighten-5"
-                        ></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
-
-                  <div class="card-overlay"></div>
-                  <div class="position-absolute category-cards">
-                    <v-btn color="orange" rounded size="x-large">Dresses</v-btn>
-                  </div>
-                </v-card>
-              </v-sheet>
-            </v-col>
-
-            <v-col align-self="end">
-              <v-sheet class="pa-2 ma-2">
-                <v-card class="fashion-items-card mt-2 border-dark">
-                  <v-img src="@/assets/banner-05.jpg" cover>
-                    <template v-slot:placeholder>
-                      <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                      >
-                        <v-progress-circular
-                          indeterminate
-                          color="grey-lighten-5"
-                        ></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
-                  <div class="card-overlay"></div>
-                  <div class="position-absolute category-cards">
-                    <v-btn color="orange" rounded size="x-large"
-                      >Sunglasses</v-btn
-                    >
-                  </div>
-                </v-card>
-              </v-sheet>
-            </v-col>
-          </v-row>
-        </v-col>
-
-        <v-col align-self="center" cols="12" md="4">
-          <v-row class="flex-column">
-            <v-col>
-              <v-sheet class="pa-2 mt-4">
-                <v-card class="fashion-items-card mb-2 border-dark">
-                  <v-img src="@/assets/banner-03.jpg" cover>
-                    <template v-slot:placeholder>
-                      <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                      >
-                        <v-progress-circular
-                          indeterminate
-                          color="grey-lighten-5"
-                        ></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
-                  <div class="card-overlay"></div>
-                  <div class="position-absolute category-cards">
-                    <v-btn color="orange" rounded size="x-large">Watches</v-btn>
-                  </div>
-                </v-card>
-              </v-sheet>
-            </v-col>
-
-            <v-col align-self="end">
-              <v-sheet>
-                <v-card class="fashion-items-card mb-2 border-dark">
-                  <v-img src="@/assets/banner-07.jpg" cover>
-                    <template v-slot:placeholder>
-                      <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                      >
-                        <v-progress-circular
-                          indeterminate
-                          color="grey-lighten-5"
-                        ></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
-                  <div class="card-overlay"></div>
-                  <div class="position-absolute category-cards">
-                    <v-btn color="orange" rounded size="x-large"
-                      >Footwear</v-btn
-                    >
-                  </div>
-                </v-card>
-              </v-sheet>
-            </v-col>
-          </v-row>
-        </v-col>
-
-        <v-col align-self="center" cols="12" md="4">
-          <v-row class="flex-column">
-            <v-col align-self="center">
-              <v-sheet class="pa-2 mb-5">
-                <v-card class="fashion-items-card mb-2 border-dark">
-                  <v-img src="@/assets/banner-04.jpg" cover>
-                    <template v-slot:placeholder>
-                      <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                      >
-                        <v-progress-circular
-                          indeterminate
-                          color="grey-lighten-5"
-                        ></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
-                  <div class="card-overlay"></div>
-                  <div class="position-absolute category-cards">
-                    <v-btn color="orange" rounded size="x-large">Bags</v-btn>
-                  </div>
-                </v-card>
-              </v-sheet>
-            </v-col>
-
-            <v-col align-self="end">
-              <v-sheet class="ma-2">
-                <v-card
-                  class="bg-light-gray mt-2 border-dark d-flex justify-center align-center flex-column pa-5"
-                >
-                  <h2 class="text-center fs-3 text-uppercase">
-                    Sign up & get 20% free.
-                  </h2>
-                  <p class="text-center mt-2 w-85 mx-auto">
-                    Be the first to know about the latest fashion news and get
-                    exclusive offers
-                  </p>
-                  <p class="my-5">
-                    <v-btn
-                      class="text-uppercase mt-5"
-                      rounded
-                      color="orange"
-                      size="large"
-                      >sign up</v-btn
-                    >
-                  </p>
-                </v-card>
-              </v-sheet>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container>
+    <section class="services">
+      <v-container>
+        <v-row>
+          <v-col cols="12" md="4">
+            <div>
+              <p class="d-flex justify-content-center">
+                <v-img
+                  src="@/assets/f-delivery.png"
+                  width="150"
+                  height="100"
+                ></v-img>
+              </p>
+              <h2 class="my-3 text-center">Free Shipping</h2>
+              <p class="text-center text-light-grey">
+                At Vmart, we believe that shopping online should be a
+                hassle-free experience from start to finish. Whether you're
+                ordering a small accessory or a large item, rest assured that
+                shipping is on us!
+              </p>
+            </div>
+          </v-col>
+          <v-col cols="12" md="4">
+            <div>
+              <p class="d-flex justify-content-center">
+                <v-img src="@/assets/coin.png" width="150" height="100"></v-img>
+              </p>
+              <h2 class="my-3 text-center">100% Money back</h2>
+              <p class="text-center text-light-grey">
+                At Vmart, we understand that sometimes things don't go as
+                planned.That's why we have implemented a straightforward and
+                customer-centric returns and refunds policy.
+              </p>
+            </div>
+          </v-col>
+          <v-col cols="12" md="4">
+            <div>
+              <p class="d-flex justify-content-center">
+                <v-img src="@/assets/chat.png" width="150" height="100"></v-img>
+              </p>
+              <h2 class="my-3 text-center">Online Support 24/7</h2>
+              <p class="text-center text-light-grey">
+                At Vmart, we believe that exceptional customer support is the
+                backbone of a remarkable shopping experience. That's why we
+                offer reliable and accessible online support to assist you every
+                step of the way.
+              </p>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
 
     <section class="featured-products">
       <v-container>
-        <h4 class="text-center text-capitalize featuredProductHeader mb-6">
+        <h4 class="text-center text-capitalize featuredProductHeader mb-0">
           featured products
         </h4>
+        <div
+          style="border: 2px solid orange; width: 10rem"
+          class="mx-auto mt-1 mb-8"
+        ></div>
 
         <vueper-slides
-          class="no-shadow mt-3"
+          class="no-shadow mt-6"
           :visible-slides="3"
           :slide-ratio="1 / 4"
           :dragging-distance="70"
@@ -344,6 +234,11 @@
         <h2 class="text-uppercase font-weight-bold text-center blog-heading">
           Our Blog
         </h2>
+        <div
+          style="border: 2px solid orange; width: 10rem"
+          class="mx-auto mt-1 mb-8"
+        ></div>
+
         <v-row justify="center" align-content="center">
           <v-col cols="12" lg="4">
             <v-card class="mt-5 border-dark fashion-items-card">
@@ -648,9 +543,16 @@ onMounted(() => {
 .text-dark-grey {
   color: #131313b3;
 }
+.text-light-grey {
+  color: #727272;
+}
 
 .border-end {
   border-right: 1px solid rgba(128, 128, 128, 0.301);
+}
+
+.services {
+  padding: 4rem 0;
 }
 
 @media only screen and (max-width: 768px) {
