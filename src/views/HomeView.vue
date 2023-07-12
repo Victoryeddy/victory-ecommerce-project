@@ -374,7 +374,6 @@ import apiClient from "@/plugins/fakeStoreAxios"
 const currentYear = new Date().getFullYear()
 // console.log(currentYear)
 
-ref
 
 // countdown section
 
@@ -453,6 +452,8 @@ const fetchData = async () => {
 
 onMounted(() => {
   fetchData()
+   store.commit("loadCart")
+  store.commit("loadLovedItemsInCart")
 })
 </script>
 

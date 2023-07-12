@@ -58,15 +58,26 @@
 
             <p class="blog-category-heading font-weight-bold mt-8">Filters</p>
             <v-slider
-              v-model="priceRange"
-              :min="minPrice"
-              :max="maxPrice"
-              color="orange"
-              step="1"
-            ></v-slider>
-          
+              v-model="slider"
+              class="align-center"
+              :max="max"
+              :min="min"
+              hide-details
+            >
+              <template v-slot:append>
+                <v-text-field
+                  v-model="slider"
+                  hide-details
+                  single-line
+                  density="compact"
+                  type="number"
+                  @input="filterByPrice"
+                  style="width: 70px"
+                ></v-text-field>
+              </template>
+            </v-slider>
           </v-col>
-          
+
           <v-col cols="12" lg="9">
             <v-row>
               <v-col
@@ -76,7 +87,6 @@
                 v-for="product in products"
                 :key="product.id"
               >
-             
                 <div>
                   <v-card class="border-dark fashion-items-card">
                     <v-img
@@ -101,13 +111,13 @@
                       </template>
                     </v-img>
 
-                    
                     <v-icon
                       class="position-absolute heart-button"
-                      
                       color="red"
                       @click="addLovedItem(product)"
-                      >{{ product.liked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon
+                      >{{
+                        product.liked ? "mdi-heart" : "mdi-heart-outline"
+                      }}</v-icon
                     >
                     <v-btn
                       class="position-absolute add-to-cart"
@@ -172,15 +182,15 @@
 import Footer from "@/components/Footer.vue"
 import { getFormattedAmount } from "@/utilities"
 
-import { ref, onMounted , computed } from "vue"
+import { ref, onMounted, computed } from "vue"
 import { useStore } from "vuex"
 import apiClient from "@/plugins/fakeStoreAxios"
 
-const priceRange = ref(0)
-const minPrice = ref(0)
-const maxPrice = ref(100)
+const slider = ref(0)
+const min = ref(0)
+const max = ref(1000)
 
-const preLoader = ref(true)
+// const preLoader = ref(true)
 
 // featured products section
 const store = useStore()
@@ -192,8 +202,7 @@ const timeout = ref(2000)
 
 const products = computed(() => store.getters.productsWithLiked)
 
-
-console.log(products)
+// console.log(products)
 function addToCart(product) {
   store.commit("addToCart", product)
   snackBar.value = true
@@ -202,24 +211,33 @@ function addToCart(product) {
 function addLovedItem(product) {
   store.commit("addLovedItems", product)
   showLovedItemMessage.value = true
-  // product.liked = !product.liked; 
+  // product.liked = !product.liked;
   product.liked = !product.liked
 }
 
 async function getFilteredData(value) {
-  const response = await apiClient.get("products")
+  let response = await apiClient.get("products")
   const filteredData = response.data.filter(
     (eachData) => eachData.category === value
   )
   store.commit("setProducts", filteredData)
 }
 
+async function filterByPrice() {
+  let response = await apiClient.get("products")
+  const filteredProductsByPrice = response.data.filter((data) => {
+    const price = data.price
+    return price >= min.value && price <= slider.value
+  })
+  console.log(filteredProductsByPrice)
+  store.commit("setProducts", filteredProductsByPrice)
+}
+
 onMounted(() => {
   store.dispatch("fetchProducts")
-  // preLoader.value = false
   store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
-  // addedToCart.value = false
+  // filterByPrice()
 })
 </script>
 
