@@ -364,6 +364,9 @@
 import Footer from "@/components/Footer.vue"
 
 import { VueperSlides, VueperSlide } from "vueperslides"
+import { useStore } from "vuex"
+
+
 import "vueperslides/dist/vueperslides.css"
 
 //  using lifecycle hooks
@@ -373,6 +376,9 @@ import apiClient from "@/plugins/fakeStoreAxios"
 // current date
 const currentYear = new Date().getFullYear()
 // console.log(currentYear)
+
+const store = useStore()
+
 
 
 // countdown section

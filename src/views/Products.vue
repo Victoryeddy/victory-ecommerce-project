@@ -62,6 +62,7 @@
               class="align-center"
               :max="max"
               :min="min"
+               @input="filterByPrice"
               hide-details
             >
               <template v-slot:append>
@@ -76,6 +77,7 @@
                 ></v-text-field>
               </template>
             </v-slider>
+
           </v-col>
 
           <v-col cols="12" lg="9">
@@ -208,6 +210,8 @@ function addToCart(product) {
   snackBar.value = true
 }
 
+
+
 function addLovedItem(product) {
   store.commit("addLovedItems", product)
   showLovedItemMessage.value = true
@@ -233,11 +237,13 @@ async function filterByPrice() {
   store.commit("setProducts", filteredProductsByPrice)
 }
 
+
+
 onMounted(() => {
   store.dispatch("fetchProducts")
   store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
-  // filterByPrice()
+
 })
 </script>
 
