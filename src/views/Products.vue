@@ -26,7 +26,7 @@
       <v-container fluid>
         <v-row>
           <v-col cols="12" lg="3">
-            <p class="blog-category-heading font-weight-bold">Category</p>
+            <p class="blog-category-heading font-weight-bold ms-4">Category</p>
             <v-list>
               <v-list-item class="border-top"
                 ><v-btn
@@ -56,7 +56,7 @@
               >
             </v-list>
 
-            <p class="blog-category-heading font-weight-bold mt-8">Filters</p>
+            <p class="blog-category-heading font-weight-bold mt-8 ms-3">Filter By Price</p>
             <v-slider
               v-model="slider"
               class="align-center"
@@ -72,6 +72,7 @@
                   single-line
                   density="compact"
                   type="number"
+                
                   @input="filterByPrice"
                   style="width: 70px"
                 ></v-text-field>
@@ -189,7 +190,7 @@ import { useStore } from "vuex"
 import apiClient from "@/plugins/fakeStoreAxios"
 
 const slider = ref(0)
-const min = ref(0)
+const min = ref(16)
 const max = ref(1000)
 
 // const preLoader = ref(true)
@@ -233,8 +234,9 @@ async function filterByPrice() {
     const price = data.price
     return price >= min.value && price <= slider.value
   })
-  console.log(filteredProductsByPrice)
-  store.commit("setProducts", filteredProductsByPrice)
+  // console.log(filteredProductsByPrice)
+  const sortFilteredProducts = filteredProductsByPrice.sort((a , b ) => b.price - a.price)
+  store.commit("setProducts", sortFilteredProducts)
 }
 
 
