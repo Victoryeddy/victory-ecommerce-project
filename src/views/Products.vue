@@ -31,6 +31,14 @@
               <v-list-item class="border-top"
                 ><v-btn
                   variant="plain"
+                  @click="getAllProducts"
+                >
+                  All
+                </v-btn></v-list-item
+              >
+              <v-list-item class="border-top"
+                ><v-btn
+                  variant="plain"
                   @click="getFilteredData(`men's clothing`)"
                 >
                   Men
@@ -237,6 +245,10 @@ async function filterByPrice() {
   // console.log(filteredProductsByPrice)
   const sortFilteredProducts = filteredProductsByPrice.sort((a , b ) => b.price - a.price)
   store.commit("setProducts", sortFilteredProducts)
+}
+
+function getAllProducts(){
+  store.dispatch("fetchProducts");
 }
 
 
