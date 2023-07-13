@@ -72,6 +72,7 @@
               :min="min"
                @input="filterByPrice"
               hide-details
+              color="orange"
             >
               <template v-slot:append>
                 <v-text-field
@@ -133,7 +134,7 @@
                     <v-btn
                       class="position-absolute add-to-cart"
                       rounded
-                      color="black"
+                      color="orange"
                       @click="addToCart(product)"
                       >Add to Cart</v-btn
                     >
