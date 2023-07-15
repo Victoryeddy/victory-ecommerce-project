@@ -101,8 +101,9 @@
           </div>
           <div v-else>
             <div
-              v-for="cart in carts"
+              v-for="(cart,index) in carts"
               :key="cart.id"
+              v-show="index < 3"
               class="mt-8 cart-container"
             >
               <div class="d-flex justify-space-between">
@@ -132,6 +133,7 @@
                 }}</span
               >
             </p>
+            <v-btn block color="orange" size="large" class="mt-4" to="/shopping-carts">view in checkout</v-btn>
           </div>
         </v-card>
       </v-navigation-drawer>
@@ -216,7 +218,7 @@
 
 <script setup>
 import { useStore } from "vuex"
-import { ref, computed } from "vue"
+import { ref, computed , onMounted } from "vue"
 import { getFormattedAmount } from "@/utilities"
 
 const store = useStore()
@@ -233,6 +235,10 @@ function removeFromCart(cartItem) {
 function removeFromLovedItem(item) {
   store.commit("removeFromLovedItems", item)
 }
+
+onMounted(() => {
+  console.log(carts.value)
+})
 </script>
 
 <style scoped>

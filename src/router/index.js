@@ -4,6 +4,7 @@ import ContactUs from '../views/ContactUs.vue'
 import AboutUs from '../views/AboutUs.vue'
 import Blog from '../views/Blog.vue'
 import Products from '../views/Products.vue'
+import Carts from '../views/Carts.vue'
 
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
     path: '/products',
     name: 'Products',
     component: Products
+  },
+  {
+    path: '/shopping-carts',
+    name: 'Carts',
+    component: Carts
   },
 
  
