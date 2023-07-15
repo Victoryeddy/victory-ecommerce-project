@@ -34,61 +34,85 @@
           >Continue Shopping</v-btn
         >
 
-        <div class="scroller d-flex">
-          <v-table hover>
-            <thead>
-              <tr>
-                <th class="text-left text-uppercase cart-headers">
-                  product
-                </th>
-                <th class="text-center text-uppercase cart-headers">
-                  price
-                </th>
-                <th class="text-center text-uppercase cart-headers">
-                  quantity
-                </th>
-                <th class="text-center text-uppercase cart-headers">
-                  total
-                </th>
-                <th class="text-end text-uppercase cart-headers">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                    <div class="d-flex align-center">
-
+        <v-row>
+          <v-col cols="12" lg="8">
+            <div class="scroller d-flex">
+              <v-table hover>
+                <thead>
+                  <tr>
+                    <th class="text-left text-uppercase cart-headers">
+                      product
+                    </th>
+                    <th class="text-center text-uppercase cart-headers">
+                      price
+                    </th>
+                    <th class="text-center text-uppercase cart-headers">
+                      quantity
+                    </th>
+                    <th class="text-center text-uppercase cart-headers">
+                      total
+                    </th>
+                    <th class="text-end text-uppercase cart-headers">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="cart in carts" :key="cart.id">
+                    <td>
+                      <div class="d-flex align-center justify-start">
                         <v-img
-                          height="150"
+                          height="200"
                           width="200"
-                          cover
-                          src="@/assets/shopping-carts-picture.jpeg"
+                          :src="cart.image"
+                          aspect-ratio="16/9"
                           class="ma-2"
                         ></v-img>
-                        <p>Chain bucket bag</p>
-                    </div>
-                 
-                </td>
-                <td class="font-bold text-center">$120</td>
-                <td class="font-bold text-center">
-                    <v-row no-gutters>
-                        <v-col cols="4"><v-btn size="small">-</v-btn></v-col>
-                        <v-col cols="4" >5</v-col>
-                        <v-col cols="4"><v-btn size="small">+</v-btn></v-col>
-                    </v-row>
-                </td>
-                <td class="font-bold text-end">
-                    $300
-                </td>
-                <td class="font-bold text-end">
-                    <v-btn size="small" prepend-icon="mdi-window-close" variant="outlined" color="red">remove</v-btn>
-                </td>
-              </tr>
-            </tbody>
-          </v-table>
-        </div>
+                      </div>
+                    </td>
+                    <td class="font-bold text-center">
+                      ₦{{ Math.ceil(cart.price) }}
+                    </td>
+                    <td class="font-bold text-center">
+                      <v-row no-gutters>
+                        <v-col cols="4"
+                          ><v-btn size="small" @click="decrementQuantity(cart)"
+                            >-</v-btn
+                          ></v-col
+                        >
+                        <v-col cols="4">{{ cart.quantity }}</v-col>
+                        <v-col cols="4"
+                          ><v-btn size="small" @click="incrementQuantity(cart)"
+                            >+</v-btn
+                          ></v-col
+                        >
+                      </v-row>
+                    </td>
+                    <td class="font-bold text-end">
+                      ₦{{ Math.ceil(calculateTotal(cart)) }}
+                    </td>
+                    <td class="font-bold text-end">
+                      <v-btn
+                        size="small"
+                        prepend-icon="mdi-window-close"
+                        variant="outlined"
+                        color="red"
+                        @click="removeFromCart(cart)"
+                        >remove</v-btn
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
+            </div>
+          </v-col>
+
+          <v-col cols="12" lg="4">
+            <v-card class="mt-9">
+              <p>Hello world</p>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
     </main>
     <Footer />
@@ -100,30 +124,48 @@
 import Footer from "@/components/Footer.vue"
 // import { getFormattedAmount } from "@/utilities"
 
-import { ref, onMounted, computed } from "vue"
+import {ref, onMounted,   watch } from "vue"
 import { useStore } from "vuex"
-import apiClient from "@/plugins/fakeStoreAxios"
 
-const slider = ref(0)
-const min = ref(16)
-const max = ref(1000)
 
-// const preLoader = ref(true)
-
-// featured products section
 const store = useStore()
 
-const snackBar = ref(false)
-const showLovedItemMessage = ref(false)
-const timeout = ref(2000)
-// Get products and cart from the store
+const carts = ref([]);
 
+function removeFromCart(cartItem) {
+  store.commit("removeFromCart", cartItem)
+}
+
+function incrementQuantity(cart) {
+  cart.quantity++
+}
+function decrementQuantity(cart) {
+  if (cart.quantity > 1) {
+    cart.quantity--
+  }
+
+}
+
+function calculateTotal(cart) {
+  let total = cart.price * cart.quantity
+  return total
+}
+
+// we watch for change in the getters so we can update the cart object
+watch(() => {
+  carts.value = store.getters.cartsWithQuantity;
+});
+
+onMounted(() => {
+  store.commit("loadCart")
+  store.commit("loadLovedItemsInCart")
+})
 </script>
 
 <style scoped>
 * {
   font-family: "Montserrat", sans-serif;
-  /* outline: 1px solid red; */
+  outline: 1px solid red;
 }
 
 .scroller {

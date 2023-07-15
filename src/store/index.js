@@ -29,6 +29,12 @@ export default createStore({
         liked: false,
       }));
     },
+    cartsWithQuantity(state){
+      return state.cart.map(cartItem => ({
+        ...cartItem,
+        quantity: 1,
+      }))
+    }
   },
   mutations: {
     setProducts(state, products) {

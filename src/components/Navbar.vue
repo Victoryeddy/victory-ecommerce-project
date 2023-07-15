@@ -116,11 +116,11 @@
                     </p>
                   </div>
                 </div>
-                <div>
+                <!-- <div>
                   <v-btn icon class="elevation-0" @click="removeFromCart(cart)">
                     <v-icon icon="mdi-window-close"></v-icon>
                   </v-btn>
-                </div>
+                </div> -->
               </div>
             </div>
             <p class="d-flex justify-space-between mt-6">
@@ -228,9 +228,9 @@ const carts = computed(() => store.state.cart)
 
 const lovedItems = computed(() => store.state.lovedItems)
 
-function removeFromCart(cartItem) {
-  store.commit("removeFromCart", cartItem)
-}
+// function removeFromCart(cartItem) {
+//   store.commit("removeFromCart", cartItem)
+// }
 
 function removeFromLovedItem(item) {
   store.commit("removeFromLovedItems", item)
