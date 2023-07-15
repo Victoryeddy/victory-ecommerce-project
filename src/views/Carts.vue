@@ -33,6 +33,7 @@
           to="/products"
           >Continue Shopping</v-btn
         >
+
         <div class="scroller d-flex">
           <v-table hover>
             <thead>
@@ -97,7 +98,7 @@
 <script setup>
 // import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
-import { getFormattedAmount } from "@/utilities"
+// import { getFormattedAmount } from "@/utilities"
 
 import { ref, onMounted, computed } from "vue"
 import { useStore } from "vuex"
@@ -117,51 +118,6 @@ const showLovedItemMessage = ref(false)
 const timeout = ref(2000)
 // Get products and cart from the store
 
-const products = computed(() => store.getters.productsWithLiked)
-
-// console.log(products)
-function addToCart(product) {
-  store.commit("addToCart", product)
-  snackBar.value = true
-}
-
-function addLovedItem(product) {
-  store.commit("addLovedItems", product)
-  showLovedItemMessage.value = true
-  // product.liked = !product.liked;
-  product.liked = !product.liked
-}
-
-async function getFilteredData(value) {
-  let response = await apiClient.get("products")
-  const filteredData = response.data.filter(
-    (eachData) => eachData.category === value
-  )
-  store.commit("setProducts", filteredData)
-}
-
-async function filterByPrice() {
-  let response = await apiClient.get("products")
-  const filteredProductsByPrice = response.data.filter((data) => {
-    const price = data.price
-    return price >= min.value && price <= slider.value
-  })
-  // console.log(filteredProductsByPrice)
-  const sortFilteredProducts = filteredProductsByPrice.sort(
-    (a, b) => b.price - a.price
-  )
-  store.commit("setProducts", sortFilteredProducts)
-}
-
-function getAllProducts() {
-  store.dispatch("fetchProducts")
-}
-
-onMounted(() => {
-  store.dispatch("fetchProducts")
-  store.commit("loadCart")
-  store.commit("loadLovedItemsInCart")
-})
 </script>
 
 <style scoped>
