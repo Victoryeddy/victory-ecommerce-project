@@ -35,9 +35,9 @@
         >
 
         <v-row>
-          <v-col cols="12" lg="8">
-            <div class="scroller d-flex">
-              <v-table hover>
+          <v-col cols="12" lg="7">
+            <div class="scroller d-flex mt-7 elevation-2">
+              <v-table>
                 <thead>
                   <tr>
                     <th class="text-left text-uppercase cart-headers">
@@ -74,7 +74,7 @@
                       ₦{{ Math.ceil(cart.price) }}
                     </td>
                     <td class="font-bold text-center">
-                      <v-row no-gutters>
+                      <v-row >
                         <v-col cols="4"
                           ><v-btn size="small" @click="decrementQuantity(cart)"
                             >-</v-btn
@@ -89,7 +89,7 @@
                       </v-row>
                     </td>
                     <td class="font-bold text-end">
-                      ₦{{ Math.ceil(calculateTotal(cart)) }}
+                      ₦{{ Math.ceil(calculateSingleCartTotal(cart)) }}
                     </td>
                     <td class="font-bold text-end">
                       <v-btn
@@ -107,9 +107,63 @@
             </div>
           </v-col>
 
-          <v-col cols="12" lg="4">
-            <v-card class="mt-9">
-              <p>Hello world</p>
+          <v-col cols="12" lg="5">
+            <v-card class="mt-7 elevation-2 pa-4">
+              <v-table>
+                <thead>
+                  <tr>
+                    <th class="text-left">Order Summary</th>
+                    <th class="text-end">{{ carts.length }} Items</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-grey py-3">Delivery Charges</td>
+                    <td class="text-grey text-end py-3">
+                      Add your delivery address at checkout to see delivery
+                      charges
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3">Subtotal:</td>
+                    <td class="text-end py-3">
+                      ₦{{
+                        getFormattedAmount(Math.ceil(calculateAllCartsTotal()))
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">Total:</td>
+                    <td class="font-weight-bold text-end">
+                      ₦{{
+                        getFormattedAmount(Math.ceil(calculateAllCartsTotal()))
+                      }}
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </v-table>
+              <v-btn block color="orange" class="mt-4" @click="payWithPaystack">Pay Now</v-btn>
+              <!-- </div> -->
+              <v-row class="d-flex justify-center align-center mt-3 mx-auto" no-gutters style="width:80%;">
+                <v-col cols="3">
+                  <p class="text-grey mt-3 font-xs">We accept:</p>
+                </v-col>
+                <v-col cols="9">
+                  <div class="d-flex mt-4">
+                    <v-img src="@/assets/mastercardPicture.png" width="10" height="10"></v-img>
+                    <v-img src="@/assets/visacardPicture.png" width="10" height="10"></v-img>
+                    <v-img src="@/assets/vervecardPicture.png" width="10" height="10"></v-img>
+                    <v-img src="@/assets/KongaPayPicture.png" width="10" height="10"></v-img>
+                  </div>
+                </v-col>
+                <v-col cols="12">
+                  <p class="d-flex justify-center mt-4 font-xs">
+                   
+                  <span class="text-grey"><v-icon>mdi-lock-outline</v-icon> Transactions are 100% safe and secure </span>
+                  </p>
+                </v-col>
+              </v-row>
             </v-card>
           </v-col>
         </v-row>
@@ -122,15 +176,14 @@
 <script setup>
 // import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
-// import { getFormattedAmount } from "@/utilities"
+import { getFormattedAmount } from "@/utilities"
 
-import {ref, onMounted,   watch } from "vue"
+import { ref, onMounted, watch } from "vue"
 import { useStore } from "vuex"
-
 
 const store = useStore()
 
-const carts = ref([]);
+const carts = ref([])
 
 function removeFromCart(cartItem) {
   store.commit("removeFromCart", cartItem)
@@ -143,22 +196,48 @@ function decrementQuantity(cart) {
   if (cart.quantity > 1) {
     cart.quantity--
   }
-
 }
 
-function calculateTotal(cart) {
+function calculateSingleCartTotal(cart) {
   let total = cart.price * cart.quantity
   return total
 }
 
+function calculateAllCartsTotal() {
+  return carts.value.reduce((total, cartItem) => {
+    return total + calculateSingleCartTotal(cartItem)
+  }, 0)
+}
+
+function payWithPaystack() {
+  var handler = PaystackPop.setup({
+    key: process.env.VUE_APP_PAYSTACK_API_KEY, // Replace with your public key
+    email: 'johndoe@gmail.com',
+    amount: 5000, // the amount value is multiplied by 100 to convert to the lowest currency unit
+    currency: 'NGN', // Use GHS for Ghana Cedis or USD for US Dollars
+    ref: 'YOUR_REFERENCE', // Replace with a reference you generated
+    callback: function(response) {
+      //this happens after the payment is completed successfully
+      var reference = response.reference;
+      alert('Payment complete! Reference: ' + reference);
+      // Make an AJAX call to your server with the reference to verify the transaction
+    },
+    onClose: function() {
+      alert('Transaction was not completed, window closed.');
+    },
+  });
+  handler.openIframe();
+}
+
 // we watch for change in the getters so we can update the cart object
 watch(() => {
-  carts.value = store.getters.cartsWithQuantity;
-});
+  carts.value = store.getters.cartsWithQuantity
+})
 
 onMounted(() => {
   store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
+  console.log(process.env.VUE_APP_PAYSTACK_API_KEY)
 })
 </script>
 
@@ -171,11 +250,14 @@ onMounted(() => {
 .scroller {
   /* overflow: hidden; */
   overflow-x: scroll;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
+}
+.font-xs{
+  font-size:0.75rem;
 }
 .cart-headers {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: #131313 !important;
 }
 .shop-header {
