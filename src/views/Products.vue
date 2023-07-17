@@ -349,7 +349,7 @@ onMounted(() => {
     position: absolute;
     z-index: 666;
     bottom: 38%;
-    left: 37%;
+    left: 30%;
     color: #fff;
     font-size: 3rem;
   }
