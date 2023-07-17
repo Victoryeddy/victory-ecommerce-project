@@ -77,7 +77,11 @@
 import GoogleMap from "@/components/GoogleMap.vue"
 // import Navbar from "@/components/Navbar.vue"
 import Footer from "@/components/Footer.vue"
+import { onMounted } from "vue"
+import { useStore } from "vuex"
 
+
+const store = useStore()
 // import { ref } from "vue"
 
 // const numberInput = ref('')
@@ -92,6 +96,11 @@ import Footer from "@/components/Footer.vue"
 //   // Update the input value with the formatted number
 //   numberInput.value = formattedNumber
 // }
+
+onMounted(() => {
+  store.commit("loadCart")
+  store.commit("loadLovedItemsInCart")
+})
 </script>
 
 <style scoped>

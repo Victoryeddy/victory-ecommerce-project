@@ -140,11 +140,14 @@ import { getFormattedDate } from "@/utilities"
 
 //  using lifecycle hooks
 import { onMounted, ref, reactive } from "vue"
+import { useStore } from "vuex"
 import apiClient from "@/plugins/articlesAxiosFile"
 
 const isLoading = ref(true)
 const allArticles = ref([])
 // const searchFilteredArticles = ref([])
+
+const store = useStore()
 
 function getArticles() {
   apiClient
@@ -174,8 +177,11 @@ const getFilteredData = async (category) => {
   }
 }
 
+
 onMounted(() => {
   // console.log(process.env.VUE_APP_NEWS_API_KEY)
+  store.commit("loadCart")
+  store.commit("loadLovedItemsInCart")
   getArticles()
 })
 </script>
