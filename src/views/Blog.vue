@@ -34,36 +34,41 @@
               <v-img src="@/assets/802.gif" width="100" height="200"></v-img>
             </div>
             <div v-else>
-              <div v-for="article in allArticles" :key="article.title">
-                <v-card class="mt-5 border-dark fashion-items-card">
-                  <v-img :src="article.image" cover>
-                    <template v-slot:placeholder>
-                      <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                      >
-                        <v-progress-circular
-                          indeterminate
-                          color="grey-lighten-5"
-                        ></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
+              <v-row>
+                <v-col v-for="article in allArticles" :key="article.title" cols="6" lg="6">
 
-                  <div class="card-overlay"></div>
-                </v-card>
-                <p class="font-weight-medium mt-4">
-                  {{ article.title }}
-                </p>
-                <p class="font-xs mt-1">
-                  By Nancy Ward on {{ getFormattedDate(article.publishedAt) }}
-                </p>
-                <p class="font-xs mt-2">
-                  {{ article.content }}
-                </p>
-                <a :href="article.url" class="fs-3">Read More</a>
-              </div>
+                  <div >
+                    <v-card class="mt-5 border-dark fashion-items-card">
+                      <v-img :src="article.image" cover>
+                        <template v-slot:placeholder>
+                          <v-row
+                            class="fill-height ma-0"
+                            align="center"
+                            justify="center"
+                          >
+                            <v-progress-circular
+                              indeterminate
+                              color="grey-lighten-5"
+                            ></v-progress-circular>
+                          </v-row>
+                        </template>
+                      </v-img>
+    
+                      <div class="card-overlay"></div>
+                    </v-card>
+                    <p class="font-weight-medium mt-4">
+                      {{ article.title }}
+                    </p>
+                    <p class="font-xs mt-1">
+                      By Nancy Ward on {{ getFormattedDate(article.publishedAt) }}
+                    </p>
+                    <p class="font-xs mt-2">
+                      {{ article.content }}
+                    </p>
+                    <a :href="article.url" class="fs-3">Read More</a>
+                  </div>
+                </v-col>
+              </v-row>
             </div>
           </v-col>
           <v-col cols="12" lg="4">
