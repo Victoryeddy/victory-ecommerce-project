@@ -55,7 +55,7 @@
                   </v-col>
                   <v-col cols="12">
                     <v-btn
-                      color="primary"
+                      color="orange"
                       rounded
                       size="large"
                       append-icon="mdi-send"
