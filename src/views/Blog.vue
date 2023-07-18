@@ -31,7 +31,7 @@
               align="center"
               justify="center"
             >
-              <v-img src="@/assets/802.gif" width="100" height="200"></v-img>
+                <v-img src="@/assets/Hourglass.gif" width="150" height="150"></v-img>
             </div>
             <div v-else>
               <v-row>
@@ -156,7 +156,6 @@ function getArticles() {
     )
     .then((response) => {
       allArticles.value = response.data.articles
-      console.log(allArticles.value, 12345)
       isLoading.value = false
     })
     .catch((error) => {

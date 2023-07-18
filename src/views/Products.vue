@@ -29,10 +29,7 @@
             <p class="blog-category-heading font-weight-bold ms-4">Category</p>
             <v-list>
               <v-list-item class="border-top"
-                ><v-btn
-                  variant="plain"
-                  @click="getAllProducts"
-                >
+                ><v-btn variant="plain" @click="getAllProducts">
                   All
                 </v-btn></v-list-item
               >
@@ -64,13 +61,15 @@
               >
             </v-list>
 
-            <p class="blog-category-heading font-weight-bold mt-8 ms-3">Filter By Price</p>
+            <p class="blog-category-heading font-weight-bold mt-8 ms-3">
+              Filter By Price
+            </p>
             <v-slider
               v-model="slider"
               class="align-center"
               :max="max"
               :min="min"
-               @input="filterByPrice"
+              @input="filterByPrice"
               hide-details
               color="orange"
             >
@@ -81,103 +80,116 @@
                   single-line
                   density="compact"
                   type="number"
-                
                   @input="filterByPrice"
                   style="width: 70px"
                 ></v-text-field>
               </template>
             </v-slider>
-
           </v-col>
 
           <v-col cols="12" lg="9">
             <v-row>
-              <v-col
-                cols="6"
-                md="6"
-                lg="4"
-                v-for="product in products"
-                :key="product.id"
-              >
-                <div>
-                  <v-card class="border-dark fashion-items-card">
-                    <v-img
-                      :src="product.image"
-                      gradient="to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
-                      width="400"
-                      height="200"
-                      aspect-ratio="16/9"
-                      class="d-flex child-flex"
+              <v-col class="d-flex justify-center" cols="12">
+                <div v-if="preLoader">
+                  <v-img
+                    src="@/assets/Hourglass.gif"
+                    width="150"
+                    height="150"
+                  ></v-img>
+                </div>
+                <div v-else>
+                  <v-row>
+                    <v-col
+                      cols="6"
+                      md="6"
+                      lg="4"
+                      v-for="product in products"
+                      :key="product.id"
                     >
-                      <template v-slot:placeholder>
-                        <v-row
-                          class="fill-height ma-0"
-                          align="center"
-                          justify="center"
-                        >
-                          <v-progress-circular
-                            indeterminate
-                            color="grey-lighten-5"
-                          ></v-progress-circular>
-                        </v-row>
-                      </template>
-                    </v-img>
+                      <div>
+                        <v-card class="border-dark fashion-items-card">
+                          <v-img
+                            :src="product.image"
+                            gradient="to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
+                            width="400"
+                            height="200"
+                            aspect-ratio="16/9"
+                            class="d-flex child-flex"
+                          >
+                            <template v-slot:placeholder>
+                              <v-row
+                                class="fill-height ma-0"
+                                align="center"
+                                justify="center"
+                              >
+                                <v-progress-circular
+                                  indeterminate
+                                  color="grey-lighten-5"
+                                ></v-progress-circular>
+                              </v-row>
+                            </template>
+                          </v-img>
 
-                    <v-icon
-                      class="position-absolute heart-button"
-                      color="red"
-                      @click="addLovedItem(product)"
-                      >{{
-                        product.liked ? "mdi-heart" : "mdi-heart-outline"
-                      }}</v-icon
-                    >
-                    <v-btn
-                      class="position-absolute add-to-cart"
-                      rounded
-                      color="orange"
-                      @click="addToCart(product)"
-                      >Add to Cart</v-btn
-                    >
+                          <v-icon
+                            class="position-absolute heart-button"
+                            color="red"
+                            @click="addLovedItem(product)"
+                            >{{
+                              product.liked ? "mdi-heart" : "mdi-heart-outline"
+                            }}</v-icon
+                          >
+                          <v-btn
+                            class="position-absolute add-to-cart"
+                            rounded
+                            color="orange"
+                            @click="addToCart(product)"
+                            >Add to Cart</v-btn
+                          >
 
-                    <v-snackbar
-                      v-model="snackBar"
-                      :timeout="timeout"
-                      color="orange"
-                      multi-line="true"
-                      variant="tonal"
-                    >
-                      <span class="text-black">Added To Cart Successfully</span>
+                          <v-snackbar
+                            v-model="snackBar"
+                            :timeout="timeout"
+                            color="orange"
+                            multi-line="true"
+                            variant="tonal"
+                          >
+                            <span class="text-black"
+                              >Added To Cart Successfully</span
+                            >
 
-                      <template v-slot:actions>
-                        <v-btn color="black" @click="snackBar = false">
-                          Close
-                        </v-btn>
-                      </template>
-                    </v-snackbar>
-                    <v-snackbar
-                      v-model="showLovedItemMessage"
-                      :timeout="timeout"
-                      color="orange"
-                      multi-line="true"
-                      variant="tonal"
-                    >
-                      <span class="text-black">Added To Wish List</span>
+                            <template v-slot:actions>
+                              <v-btn color="black" @click="snackBar = false">
+                                Close
+                              </v-btn>
+                            </template>
+                          </v-snackbar>
+                          <v-snackbar
+                            v-model="showLovedItemMessage"
+                            :timeout="timeout"
+                            color="orange"
+                            multi-line="true"
+                            variant="tonal"
+                          >
+                            <span class="text-black">Added To Wish List</span>
 
-                      <template v-slot:actions>
-                        <v-btn color="black" @click="snackBar = false">
-                          Close
-                        </v-btn>
-                      </template>
-                    </v-snackbar>
+                            <template v-slot:actions>
+                              <v-btn color="black" @click="snackBar = false">
+                                Close
+                              </v-btn>
+                            </template>
+                          </v-snackbar>
 
-                    <div class="card-overlay"></div>
-                  </v-card>
-                  <p class="font-weight-medium mt-4">
-                    {{ product.title }}
-                  </p>
-                  <p class="font-xs mt-1">
-                    ₦{{ getFormattedAmount(Math.ceil(product.price)) }}
-                  </p>
+                          <div class="card-overlay"></div>
+                        </v-card>
+                        <p class="font-weight-medium mt-4">
+                          {{ product.title }}
+                        </p>
+                        <p class="font-xs mt-1">
+                          ₦{{ getFormattedAmount(Math.ceil(product.price)) }}
+                        </p>
+                      </div>
+                    </v-col>
+                  </v-row>
                 </div>
               </v-col>
             </v-row>
@@ -202,15 +214,13 @@ const slider = ref(0)
 const min = ref(16)
 const max = ref(1000)
 
-// const preLoader = ref(true)
+const preLoader = ref(true)
 
-// featured products section
 const store = useStore()
 
 const snackBar = ref(false)
 const showLovedItemMessage = ref(false)
 const timeout = ref(2000)
-// Get products and cart from the store
 
 const products = computed(() => store.getters.productsWithLiked)
 
@@ -219,8 +229,6 @@ function addToCart(product) {
   store.commit("addToCart", product)
   snackBar.value = true
 }
-
-
 
 function addLovedItem(product) {
   store.commit("addLovedItems", product)
@@ -243,22 +251,21 @@ async function filterByPrice() {
     const price = data.price
     return price >= min.value && price <= slider.value
   })
-  // console.log(filteredProductsByPrice)
-  const sortFilteredProducts = filteredProductsByPrice.sort((a , b ) => b.price - a.price)
+  const sortFilteredProducts = filteredProductsByPrice.sort(
+    (a, b) => b.price - a.price
+  )
   store.commit("setProducts", sortFilteredProducts)
 }
 
-function getAllProducts(){
-  store.dispatch("fetchProducts");
+function getAllProducts() {
+  store.dispatch("fetchProducts")
 }
-
-
 
 onMounted(() => {
   store.dispatch("fetchProducts")
   store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
-
+  preLoader.value = false
 })
 </script>
 
