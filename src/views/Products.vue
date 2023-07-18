@@ -89,7 +89,7 @@
 
           <v-col cols="12" lg="9">
             <v-row>
-              <v-col class="d-flex justify-center" cols="12">
+              <v-col>
                 <div v-if="preLoader">
                   <v-img
                     src="@/assets/Hourglass.gif"

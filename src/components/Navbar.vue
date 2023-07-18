@@ -72,6 +72,9 @@
             store.state.cart.length
           }}</span>
         </v-btn>
+        <v-btn icon large class="hamburger-menu ms-5">
+          <v-icon>mdi-menu</v-icon>
+        </v-btn>
       </v-toolbar>
       <v-navigation-drawer
         v-model="drawer"
@@ -250,6 +253,8 @@ onMounted(() => {
   font-size: 1.5rem;
 }
 
+
+
 .total-text {
   font-size: 1.7rem;
 }
@@ -278,5 +283,20 @@ onMounted(() => {
   border-bottom: 1px solid #eeeeee;
   border-top: 1px solid #eeeeee;
   padding: 1rem;
+}
+.hamburger-menu{
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+ .hamburger-menu{
+  display: flex;
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 850px) {
+  .hamburger-menu{
+  display: flex;
+}
 }
 </style>

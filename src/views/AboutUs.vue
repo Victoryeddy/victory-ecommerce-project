@@ -27,7 +27,7 @@
           <v-col cols="12" lg="7">
             <h2 class="font-weight-bold heading">Our Story</h2>
             <p class="mt-4">
-              Welcome to our online clothing store! At Fashe Store, we believe
+              Welcome to our online clothing store! At Vmart Store, we believe
               that fashion is a powerful means of self-expression. We are
               passionate about curating a collection of stylish and trendy
               clothing pieces that allow you to showcase your unique personality
@@ -38,7 +38,7 @@
               ensuring that only the finest garments make it to your wardrobe.
             </p>
             <p>
-              At Fashe Store, we cater to individuals from all walks of life,
+              At Vmart Store, we cater to individuals from all walks of life,
               with an extensive range of clothing options for men, women, and
               children. Whether you're looking for casual everyday wear,
               sophisticated formal attire, or trendy seasonal outfits, we have
