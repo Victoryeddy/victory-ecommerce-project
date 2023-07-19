@@ -456,10 +456,21 @@ const fetchData = async () => {
   }
 }
 
+// function getAllUsers(){
+//   apiClient.get(`users`)
+//   .then(response =>{
+//     console.log(response ,12345)
+//   })
+//   .catch(error =>{
+//     console.log(error)
+//   })
+// }
+
 onMounted(() => {
   fetchData()
    store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
+  // getAllUsers()
 })
 </script>
 

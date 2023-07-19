@@ -74,7 +74,7 @@
                       ₦{{ Math.ceil(cart.price) }}
                     </td>
                     <td class="font-bold text-center">
-                      <v-row>
+                      <v-row g-3>
                         <v-col cols="4"
                           ><v-btn size="small" @click="decrementQuantity(cart)"
                             >-</v-btn
@@ -89,7 +89,7 @@
                       </v-row>
                     </td>
                     <td class="font-bold text-end">
-                      ₦{{ Math.ceil(calculateSingleCartTotal(cart)) }}
+                      ₦{{getFormattedAmount(Math.ceil(calculateSingleCartTotal(cart)))  }}
                     </td>
                     <td class="font-bold text-end">
                       <v-btn
@@ -270,8 +270,7 @@ totalAmount.value = calculateAllCartsTotal.value
 onMounted(() => {
   store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
-  console.log(process.env.VUE_APP_PAYSTACK_API_KEY)
-  console.log(totalAmount.value)
+  
 })
 </script>
 
