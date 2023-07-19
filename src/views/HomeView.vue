@@ -389,7 +389,7 @@ const remainingTime = reactive({
   remainingMinute: 0,
   remainingSecond: 0,
 })
-let futureDate = new Date(2023, 7, 23, 11, 20, 0)
+let futureDate = new Date(2023, 10, 23, 11, 20, 0)
 
 function updateCountdownTimer() {
   let currentMonth = new Date().getTime()

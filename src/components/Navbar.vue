@@ -28,12 +28,15 @@
     <div class="secondary-nav">
       <v-toolbar color="white" class="elevation-1 pa-2 px-6">
         <span>
-          <v-img
-            src="@/assets/Free_Sample_By_Wix.jpeg"
-            alt="fashion logo"
-            width="150"
-            height="60"
-          ></v-img>
+          <router-link to="/">
+
+            <v-img
+              src="@/assets/Free_Sample_By_Wix.jpeg"
+              alt="fashion logo"
+              width="150"
+              height="60"
+            ></v-img>
+          </router-link>
         </span>
         <v-spacer></v-spacer>
         <div class="d-none d-md-flex">
@@ -51,9 +54,9 @@
         </div>
         <v-spacer></v-spacer>
 
-        <v-btn icon large>
+        <!-- <v-btn icon large>
           <v-icon>mdi-account-circle-outline</v-icon>
-        </v-btn>
+        </v-btn> -->
         <v-btn icon large @click.stop="lovedItemsDrawer = !lovedItemsDrawer">
           <v-icon>mdi-heart-outline</v-icon>
           <span class="bg-dark pa-1 py-0 fw-bold text-white nav-count">{{

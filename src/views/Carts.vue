@@ -76,13 +76,13 @@
                     <td class="font-bold text-center">
                       <v-row g-3>
                         <v-col cols="4"
-                          ><v-btn size="small" @click="decrementQuantity(cart)"
+                          ><v-btn size="x-small" @click="decrementQuantity(cart)"
                             >-</v-btn
                           ></v-col
                         >
                         <v-col cols="4">{{ cart.quantity }}</v-col>
                         <v-col cols="4"
-                          ><v-btn size="small" @click="incrementQuantity(cart)"
+                          ><v-btn size="x-small" @click="incrementQuantity(cart)"
                             >+</v-btn
                           ></v-col
                         >
@@ -182,7 +182,7 @@
                   <p class="d-flex justify-center mt-4 font-xs">
                     <span class="text-grey"
                       ><v-icon>mdi-lock-outline</v-icon> Transactions are 100%
-                      safe and secure
+                      safe and secure but do not pay real cash
                     </span>
                   </p>
                 </v-col>
