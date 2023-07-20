@@ -13,6 +13,7 @@
     "roboto-fontface": "*",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
+    "vue-star-rating": "^2.1.0",
     "vue3-google-map": "^0.15.0",
     "vueperslides": "^3.5.1",
     "vuetify": "^3.0.0-beta.0",

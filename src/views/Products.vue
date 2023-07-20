@@ -106,88 +106,98 @@
                       v-for="product in products"
                       :key="product.id"
                     >
-                      <div>
-                        <v-card class="border-dark fashion-items-card">
-                          <v-img
-                            :src="product.image"
-                            gradient="to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
-                            width="400"
-                            height="200"
-                            aspect-ratio="16/9"
-                            class="d-flex child-flex"
-                          >
-                            <template v-slot:placeholder>
-                              <v-row
-                                class="fill-height ma-0"
-                                align="center"
-                                justify="center"
-                              >
-                                <v-progress-circular
-                                  indeterminate
-                                  color="grey-lighten-5"
-                                ></v-progress-circular>
-                              </v-row>
-                            </template>
-                          </v-img>
+                      
+                        <div>
+                          <v-card class="border-dark fashion-items-card">
+                            <v-img
+                              :src="product.image"
+                              gradient="to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
+                              width="400"
+                              height="200"
+                              aspect-ratio="16/9"
+                              class="d-flex child-flex"
+                            >
+                              <template v-slot:placeholder>
+                                <v-row
+                                  class="fill-height ma-0"
+                                  align="center"
+                                  justify="center"
+                                >
+                                  <v-progress-circular
+                                    indeterminate
+                                    color="grey-lighten-5"
+                                  ></v-progress-circular>
+                                </v-row>
+                              </template>
+                            </v-img>
 
-                          <v-icon
-                            class="position-absolute heart-button"
-                            color="red"
-                            @click="addLovedItem(product)"
-                            >{{
-                              product.liked ? "mdi-heart" : "mdi-heart-outline"
-                            }}</v-icon
-                          >
-                          <v-btn
-                            class="position-absolute add-to-cart"
-                            rounded
-                            color="orange"
-                            @click="addToCart(product)"
-                            >Add to Cart</v-btn
-                          >
-
-                          <v-snackbar
-                            v-model="snackBar"
-                            :timeout="timeout"
-                            color="orange"
-                            multi-line="true"
-                            variant="tonal"
-                          >
-                            <span class="text-black"
-                              >Added To Cart Successfully</span
+                            <v-icon
+                              class="position-absolute heart-button"
+                              color="red"
+                              @click="addLovedItem(product)"
+                              >{{
+                                product.liked
+                                  ? "mdi-heart"
+                                  : "mdi-heart-outline"
+                              }}</v-icon
+                            >
+                            <v-btn
+                              class="position-absolute add-to-cart"
+                              rounded
+                              color="orange"
+                              @click="addToCart(product)"
+                              >Add to Cart</v-btn
                             >
 
-                            <template v-slot:actions>
-                              <v-btn color="black" @click="snackBar = false">
-                                Close
-                              </v-btn>
-                            </template>
-                          </v-snackbar>
-                          <v-snackbar
-                            v-model="showLovedItemMessage"
-                            :timeout="timeout"
-                            color="orange"
-                            multi-line="true"
-                            variant="tonal"
-                          >
-                            <span class="text-black">Added To Wish List</span>
+                            <v-snackbar
+                              v-model="snackBar"
+                              :timeout="timeout"
+                              color="orange"
+                              multi-line="true"
+                              variant="tonal"
+                            >
+                              <span class="text-black"
+                                >Added To Cart Successfully</span
+                              >
 
-                            <template v-slot:actions>
-                              <v-btn color="black" @click="snackBar = false">
-                                Close
-                              </v-btn>
-                            </template>
-                          </v-snackbar>
+                              <template v-slot:actions>
+                                <v-btn color="black" @click="snackBar = false">
+                                  Close
+                                </v-btn>
+                              </template>
+                            </v-snackbar>
+                            <v-snackbar
+                              v-model="showLovedItemMessage"
+                              :timeout="timeout"
+                              color="orange"
+                              multi-line="true"
+                              variant="tonal"
+                            >
+                              <span class="text-black">Added To Wish List</span>
 
-                          <div class="card-overlay"></div>
-                        </v-card>
-                        <p class="font-weight-medium mt-4">
-                          {{ product.title }}
-                        </p>
-                        <p class="font-xs mt-1">
-                          ₦{{ getFormattedAmount(Math.ceil(product.price)) }}
-                        </p>
-                      </div>
+                              <template v-slot:actions>
+                                <v-btn color="black" @click="snackBar = false">
+                                  Close
+                                </v-btn>
+                              </template>
+                            </v-snackbar>
+
+                            <div class="card-overlay"></div>
+                          </v-card>
+                          <p class="font-weight-medium mt-4">
+                            {{ product.title }}
+                          </p>
+                          <p class="font-xs mt-1">
+                            ₦{{ getFormattedAmount(Math.ceil(product.price)) }}
+                          </p>
+                        </div>
+                      <router-link
+                        :to="{
+                          name: 'ProductDetail',
+                          params: { productId: product.id },
+                        }"
+                        class="d-flex justify-end text-decoration-none text-dark-grey"
+                      ><v-btn append-icon="mdi-arrow-right" elevation="0" >View More </v-btn></router-link>
                     </v-col>
                   </v-row>
                 </div>
@@ -274,6 +284,9 @@ onMounted(() => {
   font-family: "Montserrat", sans-serif;
   /* outline: 1px solid red; */
 }
+.text-dark-grey{
+  color:#131313c4 !important;
+}
 .shop-header {
   position: absolute;
   z-index: 666;
@@ -318,7 +331,7 @@ onMounted(() => {
   bottom: 20%;
   left: 28%;
   display: block;
-  z-index: 5555;
+  z-index: 6555;
   transform: translateY(90px);
   transition: all 0.5s ease-in-out;
 }
