@@ -1,11 +1,15 @@
 <template>
   <div>
-    <!-- <v-breadcrumbs :items="breadCrumb.items">
-      <template v-slot:divider>
-        <v-icon icon="mdi-chevron-right"></v-icon>
-      </template>
-    </v-breadcrumbs> -->
     <v-container>
+      <v-btn
+        color="orange"
+        prepend-icon="mdi-arrow-left"
+        variant="outlined"
+        elevation-1
+        class="font-weight-bold back-button mt-9"
+        to="/products"
+        >Continue Shopping</v-btn
+      >
       <v-row class="d-flex justify-center mt-9">
         <v-col cols="12" lg="6"
           ><v-img :src="singleProduct.image" width="600" height="600"></v-img>
@@ -64,7 +68,7 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, reactive } from "vue"
 import { useStore } from "vuex"
 import { useRouter, useRoute } from "vue-router"
 import apiClient from "@/plugins/fakeStoreAxios"
@@ -89,6 +93,7 @@ const rating = ref([])
 
 let singleProduct = ref([])
 const productId = route.params.productId
+
 function getSingleItem() {
   apiClient
     .get(`products/${productId}`)
@@ -114,6 +119,10 @@ onMounted(() => {
   font-weight: 500;
   font-size: 2.1rem;
   color: #131313;
+  font-family: "Montserrat", sans-serif;
+}
+
+.back-button {
   font-family: "Montserrat", sans-serif;
 }
 .price {

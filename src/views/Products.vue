@@ -105,6 +105,7 @@
                       lg="4"
                       v-for="product in products"
                       :key="product.id"
+                      
                     >
                       
                         <div>
