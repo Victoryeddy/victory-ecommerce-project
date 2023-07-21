@@ -145,7 +145,6 @@ import apiClient from "@/plugins/articlesAxiosFile"
 
 const isLoading = ref(true)
 const allArticles = ref([])
-// const searchFilteredArticles = ref([])
 
 const store = useStore()
 

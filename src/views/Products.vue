@@ -244,7 +244,6 @@ function addToCart(product) {
 function addLovedItem(product) {
   store.commit("addLovedItems", product)
   showLovedItemMessage.value = true
-  // product.liked = !product.liked;
   product.liked = !product.liked
 }
 

@@ -10,32 +10,7 @@ export default createStore({
     errors: [],
     lovedItems: []
   },
-  getters: {
-
-    getTotalPriceInCart(state){
-      return state.cart.reduce((total, cartItem) => {
-        return total + cartItem.price;
-      }, 0);
-    },
-    getTotalPriceInLovedItems(state){
-      return state.lovedItems.reduce((total, cartItem) => {
-        return total + cartItem.price;
-      }, 0);
-    },
-
-    productsWithLiked(state) {
-      return state.products.map(product => ({
-        ...product,
-        liked: false,
-      }));
-    },
-    cartsWithQuantity(state){
-      return state.cart.map(cartItem => ({
-        ...cartItem,
-        quantity: 1,
-      }))
-    }
-  },
+ 
   mutations: {
     setProducts(state, products) {
       state.products = products
@@ -114,5 +89,31 @@ export default createStore({
 
   },
   modules: {
-  }
+  },
+  getters: {
+
+    getTotalPriceInCart(state) {
+      return state.cart.reduce((total, cartItem) => {
+        return total + cartItem.price;
+      }, 0);
+    },
+    getTotalPriceInLovedItems(state) {
+      return state.lovedItems.reduce((total, cartItem) => {
+        return total + cartItem.price;
+      }, 0);
+    },
+
+    productsWithLiked(state) {
+      return state.products.map(product => ({
+        ...product,
+        liked: false,
+      }));
+    },
+    cartsWithQuantity(state) {
+      return state.cart.map(cartItem => ({
+        ...cartItem,
+        quantity: 1,
+      }))
+    }
+  },
 })

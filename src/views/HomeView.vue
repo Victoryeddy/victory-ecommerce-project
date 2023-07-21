@@ -366,7 +366,6 @@ import Footer from "@/components/Footer.vue"
 import { VueperSlides, VueperSlide } from "vueperslides"
 import { useStore } from "vuex"
 
-
 import "vueperslides/dist/vueperslides.css"
 
 //  using lifecycle hooks
@@ -375,14 +374,10 @@ import apiClient from "@/plugins/fakeStoreAxios"
 
 // current date
 const currentYear = new Date().getFullYear()
-// console.log(currentYear)
 
 const store = useStore()
 
-
-
 // countdown section
-
 const remainingTime = reactive({
   remainingDay: 0,
   remainingHour: 0,
@@ -393,7 +388,6 @@ let futureDate = new Date(2023, 10, 23, 11, 20, 0)
 
 function updateCountdownTimer() {
   let currentMonth = new Date().getTime()
-  // console.log(currentMonth)
   let futureMonth = futureDate.getTime()
   let diff = futureMonth - currentMonth
 
@@ -445,32 +439,20 @@ const carouselData = reactive({
 // featured products section
 const fetchedProductData = ref([])
 
-const fetchData = async () => {
+async function fetchData() {
   try {
     const response = await apiClient.get("products?limit=9")
     const data = await response.data
-    console.log(data)
     fetchedProductData.value = data
   } catch (error) {
     console.error(error)
   }
 }
 
-// function getAllUsers(){
-//   apiClient.get(`users`)
-//   .then(response =>{
-//     console.log(response ,12345)
-//   })
-//   .catch(error =>{
-//     console.log(error)
-//   })
-// }
-
 onMounted(() => {
   fetchData()
-   store.commit("loadCart")
+  store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
-  // getAllUsers()
 })
 </script>
 
