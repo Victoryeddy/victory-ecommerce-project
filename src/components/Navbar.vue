@@ -242,12 +242,12 @@
           </v-card-actions>
 
           <v-list density="compact">
-            <v-list-item prepend-icon="mdi-home-outline" class="my-3">Home</v-list-item>
+            <v-list-item prepend-icon="mdi-home-outline" class="my-3" to="/">Home</v-list-item>
 
-            <v-list-item prepend-icon="mdi-store-outline" class="my-3">Shop</v-list-item>
-            <v-list-item prepend-icon="mdi-account-details-outline" class="my-3">About</v-list-item>
-            <v-list-item prepend-icon="mdi-account-box-outline" class="my-3">Contact</v-list-item>
-            <v-list-item prepend-icon="mdi-post-outline" class="my-3">Blog</v-list-item>
+            <v-list-item prepend-icon="mdi-store-outline" class="my-3" to="/products">Shop</v-list-item>
+            <v-list-item prepend-icon="mdi-account-details-outline" class="my-3" to="/about-us">About</v-list-item>
+            <v-list-item prepend-icon="mdi-account-box-outline" class="my-3" to="/contact-us">Contact</v-list-item>
+            <v-list-item prepend-icon="mdi-post-outline" class="my-3" to="/blog">Blog</v-list-item>
           </v-list>
         </v-card>
       </v-navigation-drawer>
