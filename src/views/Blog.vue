@@ -35,7 +35,7 @@
             </div>
             <div v-else>
               <v-row>
-                <v-col v-for="article in allArticles" :key="article.title" cols="6" lg="6">
+                <v-col v-for="article in allArticles" :key="article.title" cols="12">
 
                   <div >
                     <v-card class="mt-5 border-dark fashion-items-card">
