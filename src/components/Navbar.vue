@@ -29,7 +29,6 @@
       <v-toolbar color="white" class="elevation-1 pa-2 px-6">
         <span>
           <router-link to="/">
-
             <v-img
               src="@/assets/Free_Sample_By_Wix.jpeg"
               alt="fashion logo"
@@ -75,7 +74,12 @@
             store.state.cart.length
           }}</span>
         </v-btn>
-        <v-btn icon large class="hamburger-menu ms-5">
+        <v-btn
+          icon
+          large
+          class="hamburger-menu ms-5"
+          @click.stop="navigation = !navigation"
+        >
           <v-icon>mdi-menu</v-icon>
         </v-btn>
       </v-toolbar>
@@ -107,7 +111,7 @@
           </div>
           <div v-else>
             <div
-              v-for="(cart,index) in carts"
+              v-for="(cart, index) in carts"
               :key="cart.id"
               v-show="index < 3"
               class="mt-8 cart-container"
@@ -139,7 +143,14 @@
                 }}</span
               >
             </p>
-            <v-btn block color="orange" size="large" class="mt-4" to="/shopping-carts">view in checkout</v-btn>
+            <v-btn
+              block
+              color="orange"
+              size="large"
+              class="mt-4"
+              to="/shopping-carts"
+              >view in checkout</v-btn
+            >
           </div>
         </v-card>
       </v-navigation-drawer>
@@ -147,7 +158,7 @@
         v-model="lovedItemsDrawer"
         location="right"
         temporary
-        width="400"
+        width="300"
       >
         <!-- <p>hello world</p> -->
         <v-card flat class="pa-5">
@@ -215,6 +226,31 @@
           </div>
         </v-card>
       </v-navigation-drawer>
+
+      <v-navigation-drawer
+        v-model="navigation"
+        location="left"
+        temporary
+        width="300"
+      >
+        <v-card flat>
+          <v-card-actions class="mb-6">
+            <v-spacer></v-spacer>
+            <v-btn icon large @click="navigation = false">
+              <v-icon icon="mdi-window-close"></v-icon>
+            </v-btn>
+          </v-card-actions>
+
+          <v-list density="compact">
+            <v-list-item prepend-icon="mdi-home-outline" class="my-3">Home</v-list-item>
+
+            <v-list-item prepend-icon="mdi-store-outline" class="my-3">Shop</v-list-item>
+            <v-list-item prepend-icon="mdi-account-details-outline" class="my-3">About</v-list-item>
+            <v-list-item prepend-icon="mdi-account-box-outline" class="my-3">Contact</v-list-item>
+            <v-list-item prepend-icon="mdi-post-outline" class="my-3">Blog</v-list-item>
+          </v-list>
+        </v-card>
+      </v-navigation-drawer>
     </div>
     <!-- <v-btn icon elevation="0">
       <v-icon>mdi-shopping-outline</v-icon>
@@ -224,11 +260,13 @@
 
 <script setup>
 import { useStore } from "vuex"
-import { ref, computed , onMounted } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { getFormattedAmount } from "@/utilities"
 
 const store = useStore()
 const drawer = ref(false)
+const navigation = ref(false)
+
 const lovedItemsDrawer = ref(false)
 const carts = computed(() => store.state.cart)
 
@@ -255,8 +293,6 @@ onMounted(() => {
 .cart-text {
   font-size: 1.5rem;
 }
-
-
 
 .total-text {
   font-size: 1.7rem;
@@ -287,19 +323,19 @@ onMounted(() => {
   border-top: 1px solid #eeeeee;
   padding: 1rem;
 }
-.hamburger-menu{
+.hamburger-menu {
   display: none;
 }
 
 @media only screen and (max-width: 768px) {
- .hamburger-menu{
-  display: flex;
-}
+  .hamburger-menu {
+    display: flex;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 850px) {
-  .hamburger-menu{
-  display: flex;
-}
+  .hamburger-menu {
+    display: flex;
+  }
 }
 </style>
