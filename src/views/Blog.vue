@@ -177,7 +177,7 @@ const getFilteredData = async (category) => {
 
 
 onMounted(() => {
-  // console.log(process.env.VUE_APP_NEWS_API_KEY)
+ 
   store.commit("loadCart")
   store.commit("loadLovedItemsInCart")
   getArticles()

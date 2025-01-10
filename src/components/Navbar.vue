@@ -280,9 +280,7 @@ function removeFromLovedItem(item) {
   store.commit("removeFromLovedItems", item)
 }
 
-onMounted(() => {
-  console.log(carts.value)
-})
+
 </script>
 
 <style scoped>

@@ -7,7 +7,7 @@
         height="300"
         aspect-ratio="16/9"
         cover
-        src="@/assets/shopping-carts-picture.jpeg"
+        src="@/assets/nguyen-dang-hoang-nhu-Nne2TxFHPyQ-unsplash.jpeg"
         gradient="to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
       >
         <template v-slot:placeholder>
@@ -247,7 +247,7 @@ function payWithPaystack() {
     },
     onClose: function () {
       alert("Transaction was not completed, window closed.")
-      console.log(totalAmount.value)
+     
     },
   })
   handler.openIframe()

@@ -31,7 +31,7 @@ export default createStore({
     removeFromCart(state, product) {
       const newItems = state.cart.filter(item => item.id !== product.id);
 
-      // console.log(index);
+      
       if (newItems) {
         state.cart = newItems;
         localStorage.setItem(CART_ITEMS, JSON.stringify(state.cart))
@@ -60,7 +60,7 @@ export default createStore({
     removeFromLovedItems(state, product) {
       const newLovedItems = state.lovedItems.filter(item => item.id !== product.id);
 
-      // console.log(index);
+    
       if (newLovedItems) {
         state.lovedItems = newLovedItems;
         localStorage.setItem(LOVED_ITEMS, JSON.stringify(state.lovedItems))

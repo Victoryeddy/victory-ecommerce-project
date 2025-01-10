@@ -235,7 +235,7 @@ const timeout = ref(2000)
 
 const products = computed(() => store.getters.productsWithLiked)
 
-// console.log(products)
+
 function addToCart(product) {
   store.commit("addToCart", product)
   snackBar.value = true

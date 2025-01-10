@@ -384,7 +384,7 @@ const remainingTime = reactive({
   remainingMinute: 0,
   remainingSecond: 0,
 })
-let futureDate = new Date(2023, 10, 23, 11, 20, 0)
+let futureDate = new Date(2030, 10, 23, 11, 20, 0)
 
 function updateCountdownTimer() {
   let currentMonth = new Date().getTime()
@@ -394,7 +394,7 @@ function updateCountdownTimer() {
   remainingTime.remainingDay = Math.floor(diff / 1000 / 60 / 60 / 24)
 
   remainingTime.remainingHour = Math.floor(diff / 1000 / 60 / 60) % 24
-  // console.log(remainingTime.remainingHour)
+  
 
   remainingTime.remainingMinute = Math.floor(diff / 1000 / 60) % 60
 
@@ -421,9 +421,7 @@ const carouselData = reactive({
     {
       src: "aviv-rachmadian-7F7kEHj72MQ-unsplash.jpg",
     },
-    {
-      src: "clark-street-mercantile-P3pI6xzovu0-unsplash.jpg",
-    },
+   
     {
       src: "waldemar-HmgSNpswOxM-unsplash.jpg",
     },

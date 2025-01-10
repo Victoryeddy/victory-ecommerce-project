@@ -21,5 +21,5 @@ const markerOptions = ref({
   label: "L",
   title: "LADY LIBERTY",
 })
-// console.log(12345)
+
 </script>

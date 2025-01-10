@@ -99,7 +99,7 @@ function getSingleItem() {
     .get(`products/${productId}`)
     .then((response) => {
       singleProduct.value = response.data
-      console.log(singleProduct.value)
+    
       rating.value = singleProduct.value.rating
     })
     .catch((error) => {
